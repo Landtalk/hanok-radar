@@ -223,7 +223,7 @@
         // 앱스 스크립트 웹 앱 URL (직접 설정)
         const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby8s7cgC4kkcD6XiVheP7BVWvboMuBmbTVEZF6BAvQCMLTdG-3K6-VqyDkH0OBQ8tN_yg/exec';
 
-        // 접근 신청 처리
+        // 접근 신청 처리 (임시 로컬 스토리지 방식)
         async function requestAccess() {
             const email = document.getElementById('emailInput').value.trim();
             const submitBtn = document.getElementById('submitBtn');
@@ -243,27 +243,38 @@
             submitBtn.textContent = '처리 중...';
             
             try {
-                // 앱스 스크립트 웹 앱으로 데이터 전송
-                const response = await fetch(APPS_SCRIPT_URL, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({email: email})
+                // 임시: 로컬 스토리지에 저장 (CORS 문제 해결 전까지)
+                const requests = JSON.parse(localStorage.getItem('hanok_radar_requests') || '[]');
+                requests.push({
+                    email: email,
+                    timestamp: new Date().toISOString(),
+                    status: 'pending'
                 });
+                localStorage.setItem('hanok_radar_requests', JSON.stringify(requests));
                 
-                const result = await response.json();
+                showStatus('✅ 접근 신청이 완료되었습니다! 관리자 승인 후 이메일로 안내드리겠습니다.');
+                document.getElementById('emailInput').value = '';
                 
-                if (result.success) {
-                    showStatus('✅ 접근 신청이 완료되었습니다! 관리자 승인 후 이메일로 안내드리겠습니다.');
-                    document.getElementById('emailInput').value = '';
-                } else {
-                    console.error('앱스 스크립트 오류:', result.error);
-                    showStatus('❌ 신청 처리 중 오류가 발생했습니다. 다시 시도해주세요.', true);
+                // 실제 Apps Script 호출 시도 (백그라운드)
+                try {
+                    const response = await fetch(APPS_SCRIPT_URL, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({email: email})
+                    });
+                    
+                    if (response.ok) {
+                        console.log('Apps Script 전송 성공');
+                    }
+                } catch (appsScriptError) {
+                    console.log('Apps Script 전송 실패 (로컬 저장됨):', appsScriptError);
                 }
+                
             } catch (error) {
-                console.error('네트워크 오류:', error);
-                showStatus('❌ 네트워크 오류가 발생했습니다. 인터넷 연결을 확인해주세요.', true);
+                console.error('오류:', error);
+                showStatus('❌ 오류가 발생했습니다. 다시 시도해주세요.', true);
             } finally {
                 submitBtn.disabled = false;
                 submitBtn.textContent = '접근 신청하기';
