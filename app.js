@@ -1,5 +1,5 @@
-// 설정 로드 (config.js에서 가져옴)
-const MYMAPS_ID = CONFIG.MYMAPS_ID;
+// 설정 로드 (직접 설정)
+const MYMAPS_ID = "1IaydaCVlU-3SxjGa7DnE-y_LzMr2FZg";
 // 구글마이맵 embed URL (검색 기능 활성화)
 const MAP_EMBED = `https://www.google.com/maps/d/embed?mid=${MYMAPS_ID}&ehbc=2E312F&hl=ko&gl=KR`;
 const MAP_VIEW  = `https://www.google.com/maps/d/viewer?mid=${MYMAPS_ID}`;
