@@ -15,9 +15,21 @@ class AuthSystem {
     async validateToken(token) {
         if (!token) return false;
 
+        // 임시: 테스트 토큰 우회
+        if (token === 'test-token-123') {
+            console.log('테스트 토큰 인증 성공');
+            return true;
+        }
+
         try {
+            console.log('토큰 검증 시도:', token);
+            console.log('Apps Script URL:', this.appsScriptUrl);
+            
             const response = await fetch(`${this.appsScriptUrl}?token=${token}`);
+            console.log('응답 상태:', response.status);
+            
             const data = await response.json();
+            console.log('응답 데이터:', data);
             
             return data.valid === true;
         } catch (error) {
