@@ -27,11 +27,11 @@ class HanokAnalytics {
 
   // Google Analytics 4 설정
   setupGoogleAnalytics() {
-    // config.js에서 GA4 측정 ID 가져오기
-    const measurementId = CONFIG.GA_MEASUREMENT_ID;
+    // GA4 측정 ID (직접 설정)
+    const measurementId = ''; // 필요시 설정
     
-    if (!measurementId || measurementId === 'G-XXXXXXXXXX') {
-      console.warn('⚠️ GA4 측정 ID가 설정되지 않았습니다. config.js에서 GA_MEASUREMENT_ID를 설정하세요.');
+    if (!measurementId) {
+      console.warn('⚠️ GA4 측정 ID가 설정되지 않았습니다. analytics.js에서 measurementId를 설정하세요.');
       return;
     }
 
