@@ -1,19 +1,23 @@
-// 심플한 이메일 인증 시스템
+// 구글시트 연동 이메일 인증 시스템
 class AuthSystem {
     constructor() {
-        // 허용된 이메일 목록 (수동 관리)
-        this.allowedEmails = [
-            'test@example.com',
-            'lovenear97@gmail.com',
-            'landtalk2025@gmail.com'
-            // 필요시 여기에 이메일 추가
-        ];
+        // 앱스 스크립트 웹 앱 URL (구글시트 연동)
+        this.appsScriptUrl = 'https://script.google.com/macros/s/AKfycbxBG0e-mE9Dzy6z96MYoJGwCWgxyOSdebVb1YLOhOALQo2nQfPgu6pBNX6A8HCKMS8cNA/exec';
     }
 
-    // 이메일 검증
-    validateEmail(email) {
+    // 구글시트에서 이메일 검증
+    async validateEmail(email) {
         if (!email) return false;
-        return this.allowedEmails.includes(email.toLowerCase());
+        
+        try {
+            const response = await fetch(`${this.appsScriptUrl}?action=checkEmail&email=${encodeURIComponent(email)}`);
+            const data = await response.json();
+            
+            return data.valid === true;
+        } catch (error) {
+            console.error('이메일 검증 실패:', error);
+            return false;
+        }
     }
 
     // 로컬 스토리지에서 이메일 저장/불러오기
@@ -26,10 +30,10 @@ class AuthSystem {
     }
 
     // 접근 권한 확인
-    checkAccess() {
+    async checkAccess() {
         // 로컬 스토리지에서 이메일 확인
         const storedEmail = this.getStoredEmail();
-        if (storedEmail && this.validateEmail(storedEmail)) {
+        if (storedEmail && await this.validateEmail(storedEmail)) {
             return true;
         }
 
@@ -37,8 +41,8 @@ class AuthSystem {
     }
 
     // 이메일 로그인 처리
-    login(email) {
-        if (this.validateEmail(email)) {
+    async login(email) {
+        if (await this.validateEmail(email)) {
             this.saveEmail(email);
             return true;
         }
@@ -98,13 +102,13 @@ class AuthSystem {
 const authSystem = new AuthSystem();
 
 // 페이지 로드 시 접근 권한 확인
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', async function() {
     // 랜딩페이지에서는 인증 체크 생략
     if (window.location.pathname.includes('landing.html')) {
         return;
     }
     
-    const hasAccess = authSystem.checkAccess();
+    const hasAccess = await authSystem.checkAccess();
     
     if (hasAccess) {
         authSystem.showMainContent();
