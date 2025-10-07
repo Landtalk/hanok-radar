@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>한옥 레이다 - 접근 신청</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="config.js"></script>
+    <style>
+        .landing-container {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .landing-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+        }
+        
+        .landing-logo {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .landing-subtitle {
+            color: #7f8c8d;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+        }
+        
+        .landing-description {
+            color: #34495e;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+        
+        .landing-features {
+            text-align: left;
+            margin-bottom: 30px;
+        }
+        
+        .landing-features h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+        
+        .landing-features ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .landing-features li {
+            padding: 8px 0;
+            color: #34495e;
+            position: relative;
+            padding-left: 25px;
+        }
+        
+        .landing-features li:before {
+            content: "✓";
+            color: #27ae60;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        
+        .email-form {
+            margin-bottom: 20px;
+        }
+        
+        .email-input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            font-size: 1em;
+            margin-bottom: 15px;
+            transition: border-color 0.3s;
+        }
+        
+        .email-input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .submit-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            transition: transform 0.2s;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .status-message {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 8px;
+            display: none;
+        }
+        
+        .status-success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .status-error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .google-form-link {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border: 1px solid #e9ecef;
+        }
+        
+        .google-form-link a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .google-form-link a:hover {
+            text-decoration: underline;
+        }
+        
+        .footer-info {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e9ecef;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="landing-container">
+        <div class="landing-card">
+            <div class="landing-logo">🏛️ 한옥 레이다</div>
+            <div class="landing-subtitle">서울시 한옥 현황 지도 서비스</div>
+            
+            <div class="landing-description">
+                <strong>한옥 레이다</strong>는 서울시 25개 자치구의 한옥 현황과 체험업 정보를 
+                한눈에 볼 수 있는 전문 지도 서비스입니다.
+            </div>
+            
+            <div class="landing-features">
+                <h3>주요 기능</h3>
+                <ul>
+                    <li>서울시 25개 자치구 한옥 현황 통계</li>
+                    <li>한옥 체험업 가능 물건 정보</li>
+                    <li>구별 상세 통계 및 분석</li>
+                    <li>한옥 관련 서비스 업체 정보</li>
+                    <li>실시간 데이터 업데이트</li>
+                </ul>
+            </div>
+            
+            <div class="email-form">
+                <input type="email" id="emailInput" class="email-input" 
+                       placeholder="이메일 주소를 입력해주세요" required>
+                <button id="submitBtn" class="submit-btn" onclick="requestAccess()">
+                    접근 신청하기
+                </button>
+                <div id="statusMessage" class="status-message"></div>
+            </div>
+            
+            <div class="google-form-link">
+                <p>또는 <a href="https://forms.gle/your-google-form-link" target="_blank">구글폼으로 신청하기</a></p>
+            </div>
+            
+            <div class="footer-info">
+                <p>접근 신청 후 관리자 승인 시 서비스 이용이 가능합니다.</p>
+                <p>문의: landtalk2025@gmail.com</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 이메일 유효성 검사
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+        
+        // 상태 메시지 표시
+        function showStatus(message, isError = false) {
+            const statusDiv = document.getElementById('statusMessage');
+            statusDiv.textContent = message;
+            statusDiv.className = `status-message ${isError ? 'status-error' : 'status-success'}`;
+            statusDiv.style.display = 'block';
+        }
+        
+        // 앱스 스크립트 웹 앱 URL (config.js에서 가져옴)
+        const APPS_SCRIPT_URL = CONFIG.APPS_SCRIPT_URL;
+
+        // 접근 신청 처리
+        async function requestAccess() {
+            const email = document.getElementById('emailInput').value.trim();
+            const submitBtn = document.getElementById('submitBtn');
+            
+            if (!email) {
+                showStatus('이메일 주소를 입력해주세요.', true);
+                return;
+            }
+            
+            if (!validateEmail(email)) {
+                showStatus('올바른 이메일 주소를 입력해주세요.', true);
+                return;
+            }
+            
+            // 버튼 비활성화
+            submitBtn.disabled = true;
+            submitBtn.textContent = '처리 중...';
+            
+            try {
+                // 앱스 스크립트 웹 앱으로 데이터 전송
+                const response = await fetch(APPS_SCRIPT_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({email: email})
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    showStatus('✅ 접근 신청이 완료되었습니다! 관리자 승인 후 이메일로 안내드리겠습니다.');
+                    document.getElementById('emailInput').value = '';
+                } else {
+                    console.error('앱스 스크립트 오류:', result.error);
+                    showStatus('❌ 신청 처리 중 오류가 발생했습니다. 다시 시도해주세요.', true);
+                }
+            } catch (error) {
+                console.error('네트워크 오류:', error);
+                showStatus('❌ 네트워크 오류가 발생했습니다. 인터넷 연결을 확인해주세요.', true);
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = '접근 신청하기';
+            }
+        }
+        
+        // 엔터키로 제출
+        document.getElementById('emailInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                requestAccess();
+            }
+        });
+    </script>
+</body>
+</html>

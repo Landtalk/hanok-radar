@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>한옥 레이다 — 한옥 현황 지도</title>
+  <link rel="icon" href="/favicon.ico"/>
+  <link rel="stylesheet" href="styles.css"/>
+  <script defer src="config.js"></script>
+  <script defer src="analytics.js"></script>
+  <script defer src="category-tracker.js"></script>
+  <script defer src="contacts.js"></script>
+  <script defer src="district-stats.js"></script>
+  <script defer src="auth-system.js"></script>
+  <script defer src="app.js"></script>
+  
+  <script>
+
+    // 카카오톡 팝업 함수
+    function showKakaoPopup() {
+      alert('카카오톡 오픈채팅방\n\n현재 카카오톡 오픈채팅방은 개설 예정입니다.\n\n곧 서비스가 제공될 예정이니\n잠시만 기다려주세요! 🙏\n\n문의사항이 있으시면\n네이버 카페를 이용해주세요.');
+    }
+
+    // 큰 지도 보기 팝업 함수
+    function openLargeMap() {
+      const mapViewUrl = `https://www.google.com/maps/d/viewer?mid=${CONFIG.MYMAPS_ID}&hl=ko&femb=1&ll=37.56750552879913%2C126.96830814999997&z=11`;
+      
+      // 팝업 창으로 큰 지도 보기 열기
+      const popup = window.open(
+        mapViewUrl,
+        'largeMap',
+        'width=1200,height=800,scrollbars=yes,resizable=yes,status=yes,location=yes,toolbar=yes,menubar=yes'
+      );
+      
+      if (popup) {
+        popup.focus();
+      } else {
+        alert('팝업이 차단되었습니다. 팝업 차단을 해제하고 다시 시도해주세요.');
+      }
+    }
+
+
+    // 법적 정보 모달 함수들
+    function showTerms() {
+      alert('서비스 이용약관\n\n1. 서비스 이용\n- 본 서비스는 서울시 한옥 현황 정보를 제공합니다.\n- 서비스 이용 시 관련 법규를 준수해야 합니다.\n\n2. 이용자의 의무\n- 정확한 정보 입력\n- 서비스 이용 시 매너 준수\n\n3. 서비스 변경 및 중단\n- 서비스는 사전 공지 후 변경 또는 중단될 수 있습니다.\n\n4. 면책조항\n- 제공되는 정보의 정확성을 보장하지 않습니다.\n- 이용자가 입은 손해에 대해 책임지지 않습니다.');
+    }
+    
+    function showPrivacy() {
+      alert('개인정보처리방침\n\n1. 수집하는 개인정보\n- 이메일 주소 (구글 로그인 시)\n- 서비스 이용 기록\n\n2. 개인정보 이용 목적\n- 서비스 제공 및 개선\n- 사용자 통계 분석\n\n3. 개인정보 보유 기간\n- 회원 탈퇴 시까지\n- 법령에 의해 보존이 필요한 경우 해당 기간까지\n\n4. 개인정보 제3자 제공\n- 원칙적으로 제3자에게 제공하지 않습니다.\n- 법령에 의해 요구되는 경우에만 제공합니다.\n\n5. 개인정보 보호\n- 개인정보는 암호화되어 안전하게 보관됩니다.');
+    }
+    
+    function showBusiness() {
+      const businessInfo = `
+        <div style="max-width: 500px; padding: 20px; font-family: Arial, sans-serif;">
+          <h3 style="margin: 0 0 20px 0; color: #2c3e50; border-bottom: 2px solid #007bff; padding-bottom: 10px;">사업자 정보</h3>
+          
+          <div style="margin-bottom: 15px;">
+            <strong>상호명:</strong> 주식회사 하이델베르크2018
+          </div>
+          
+          <div style="margin-bottom: 15px;">
+            <strong>대표자:</strong> 김양언
+          </div>
+          
+          <div style="margin-bottom: 15px;">
+            <strong>고객센터:</strong> 010-6722-2018
+          </div>
+          
+          <div style="margin-bottom: 15px;">
+            <strong>사업자등록번호:</strong> 4698102996
+          </div>
+          
+          <div style="margin-bottom: 15px;">
+            <strong>사업장 소재지:</strong> 경기도 용인시 수지구 동천로99번길 3 (상록제일프라자) 203호 내 더라이즈비지니스센터 55호 (우 : 16823)
+          </div>
+          
+          <div style="margin-bottom: 15px;">
+            <strong>통신판매업번호:</strong> 2023-용인수지-0281
+          </div>
+          
+          <div style="margin-bottom: 20px;">
+            <strong>e-mail:</strong> landtalk2025@gmail.com
+          </div>
+        </div>
+      `;
+      
+      // 모달 창으로 표시
+      const modal = document.createElement('div');
+      modal.style.cssText = `
+        position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+        background: rgba(0,0,0,0.5); z-index: 1000; display: flex; 
+        align-items: center; justify-content: center;
+      `;
+      
+      const content = document.createElement('div');
+      content.style.cssText = `
+        background: white; border-radius: 12px; padding: 0; 
+        max-width: 90%; max-height: 90%; overflow-y: auto;
+        position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      `;
+      
+      content.innerHTML = `
+        <div style="position: absolute; top: 15px; right: 15px; cursor: pointer; font-size: 24px; color: #aaa;" onclick="this.closest('.modal').remove()">&times;</div>
+        ${businessInfo}
+      `;
+      
+      modal.className = 'modal';
+      modal.appendChild(content);
+      document.body.appendChild(modal);
+      
+      // 모달 외부 클릭 시 닫기
+      modal.onclick = (e) => {
+        if (e.target === modal) modal.remove();
+      };
+    }
+    
+    // 가이드 토글 기능
+    function toggleGuide() {
+      const guideContent = document.getElementById('guideContent');
+      const toggleBtn = document.querySelector('.guide-btn');
+      
+      if (guideContent.style.display === 'none') {
+        guideContent.style.display = 'block';
+        toggleBtn.innerHTML = '<span class="guide-icon">📖</span>가이드 숨기기';
+      } else {
+        guideContent.style.display = 'none';
+        toggleBtn.innerHTML = '<span class="guide-icon">📖</span>사용법';
+      }
+    }
+  </script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-icon">🏛️</div>
+      <span>한옥 레이다</span>
+    </div>
+  </header>
+
+  <!-- 로그인 화면 제거됨 - 지도만 표시 -->
+
+  <!-- 지도 -->
+  <main id="mapScreen">
+    <section class="wrap">
+      <!-- 지도 헤더 -->
+      <div class="map-header">
+        <h2 class="map-title">한옥 현황 지도</h2>
+        <div class="map-controls">
+          <button class="guide-btn" onclick="toggleGuide()">
+            <span class="guide-icon">📖</span>
+            사용법
+          </button>
+          <button class="large-map-btn" onclick="openLargeMap()">
+            <span class="large-map-icon">🔍</span>
+            큰 지도 보기
+          </button>
+          <button class="stats-btn" onclick="districtStats.toggleStats()">
+            <span class="stats-icon">📊</span>
+            통계
+          </button>
+        </div>
+        </div>
+
+      <!-- 지도는 로그인 없이 바로 표시 -->
+      <div class="map-embed">
+        <iframe id="mymaps" style="border:0" allowfullscreen loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                sandbox="allow-scripts allow-same-origin allow-popups allow-forms"></iframe>
+      </div>
+
+           <p class="hint small" id="mapHint" style="display: none;">
+        지도가 비어 보이면 My Maps 공유 설정을 확인하세요.
+             (<a id="openNewTab" target="_blank" rel="no-referrer">새 탭으로 열기</a>)
+           </p>
+           
+      
+      <!-- 사용법 가이드 (접힌 상태로 시작) -->
+      <div class="guide-section">
+        <div class="guide-content" id="guideContent" style="display: none;">
+          <div class="guide-steps">
+            <div class="guide-step">
+              <div class="step-number">1</div>
+              <div class="step-content">
+                <h4>지도 탐색하기</h4>
+                <p>마우스 휠로 확대/축소, 드래그로 이동할 수 있습니다.</p>
+              </div>
+            </div>
+            
+            <div class="guide-step">
+              <div class="step-number">2</div>
+              <div class="step-content">
+                <h4>레이어 확인하기</h4>
+                <p>왼쪽 상단의 레이어 메뉴에서 한옥등록현황과 한옥체험업 등록현황을 선택할 수 있습니다.</p>
+              </div>
+            </div>
+            
+            <div class="guide-step">
+              <div class="step-number">3</div>
+              <div class="step-content">
+                <h4>마커 클릭하기</h4>
+                <p>지도上的 마커를 클릭하면 해당 한옥의 상세 정보를 확인할 수 있습니다.</p>
+              </div>
+            </div>
+            
+            <div class="guide-step">
+              <div class="step-number">4</div>
+              <div class="step-content">
+                <h4>검색 기능 사용하기</h4>
+                <p>지도 상단의 검색창에서 주소나 건물명으로 원하는 지역을 찾을 수 있습니다.</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="guide-tips">
+            <h4>💡 유용한 팁</h4>
+            <ul>
+              <li>전체화면 모드로 더 넓은 화면에서 지도를 확인하세요</li>
+              <li>스마트폰에서는 두 손가락으로 확대/축소가 가능합니다</li>
+              <li>지도가 보이지 않으면 새로고침을 시도해보세요</li>
+              <li>문제가 지속되면 카카오톡으로 문의해주세요</li>
+            </ul>
+          </div>
+          
+          <div class="guide-video">
+            <h4>🎥 영상 가이드</h4>
+            <p>더 자세한 사용법은 영상으로 확인하세요</p>
+            <div class="video-placeholder">
+              <div class="video-icon">▶️</div>
+              <p>사용법 영상 (준비 중)</p>
+              <small>곧 업로드 예정입니다</small>
+            </div>
+            <a href="guide.html" class="guide-link-btn">상세 가이드 보기</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 사이드바: 공지사항 및 액션 카드들 -->
+      <aside class="sidebar">
+        <div class="notice-card">
+          <div class="notice-icon">📢</div>
+          <div class="notice-content">
+            <div class="notice-title">베타 운영 중</div>
+            <div class="notice-text">오류/제안사항이 있으시면 연락주세요</div>
+            <a href="mailto:landtalk2025@gmail.com" class="notice-email">landtalk2025@gmail.com</a>
+          </div>
+        </div>
+        
+        <!-- 제휴업체 분야 선택 -->
+        <div class="category-section">
+          <h3 class="category-title">🔍 필요한 서비스를 선택해주세요</h3>
+          <p class="category-notice">💡 선택하신 분야의 전문 서비스가 곧 제공될 예정입니다</p>
+          <div class="category-buttons" id="categoryButtons">
+            <!-- 카테고리 버튼들이 여기에 동적으로 생성됩니다 -->
+          </div>
+        </div>
+        
+        <div class="action-cards">
+          <div class="action-card kakao-card">
+            <div class="action-icon">💬</div>
+            <div class="action-content">
+              <div class="action-title">카카오톡 문의</div>
+              <div class="action-desc">실시간 채팅 상담</div>
+            </div>
+            <button onclick="showKakaoPopup()" class="action-btn kakao-btn">
+              오픈채팅방 참여
+            </button>
+          </div>
+          
+          <div class="action-card cafe-card">
+            <div class="action-icon">🏠</div>
+            <div class="action-content">
+              <div class="action-title">네이버 카페</div>
+              <div class="action-desc">커뮤니티 참여</div>
+            </div>
+            <a href="https://cafe.naver.com/hanokradar" target="_blank" class="action-btn cafe-btn">
+              카페 참여하기
+            </a>
+          </div>
+          
+          <div class="action-card contact-card">
+            <div class="action-icon">📞</div>
+            <div class="action-content">
+              <div class="action-title">한옥 담당 부서</div>
+              <div class="action-desc">서울시 25개 구 연락처</div>
+            </div>
+            <button class="action-btn contact-btn" onclick="hanokContacts.showContacts()">
+              부서별 연락처 보기
+            </button>
+          </div>
+          
+          <div class="action-card ad-card">
+            <div class="action-icon">📢</div>
+            <div class="action-content">
+              <div class="action-title">광고/제휴 문의</div>
+              <div class="action-desc">협력 및 광고 문의</div>
+            </div>
+            <a href="https://cafe.naver.com/hanokradar" target="_blank" class="action-btn ad-btn">
+              광고 문의하기
+            </a>
+          </div>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <!-- 한옥 담당 부서 연락처 모달 -->
+  <div id="contactsModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>🏛️ 한옥 담당 부서 연락처</h3>
+        <span class="close" onclick="hanokContacts.hideContacts()">&times;</span>
+      </div>
+      <div class="modal-body">
+        <div class="contacts-list" id="contactsList">
+          <!-- 연락처 목록이 여기에 동적으로 로드됩니다 -->
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="hanokContacts.hideContacts()">닫기</button>
+        <button class="btn btn-primary" onclick="hanokContacts.exportContacts()">연락처 내보내기</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="foot">
+    <div class="footer-content">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <div class="footer-icon">🏛️</div>
+          <span class="footer-title">한옥 레이다</span>
+        </div>
+        <div class="footer-desc">
+          서울시 한옥 현황 및 체험업 등록현황을 한눈에 확인하세요
+        </div>
+      </div>
+      
+      <div class="footer-links">
+        <div class="footer-section">
+          <h4>서비스</h4>
+          <ul>
+            <li><a href="#" onclick="hanokContacts.showContacts()">한옥 담당 부서</a></li>
+            <li><a href="#" onclick="showKakaoPopup()">카카오톡 문의</a></li>
+            <li><a href="mailto:landtalk2025@gmail.com">광고 문의</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-section">
+          <h4>법적 정보</h4>
+          <ul>
+            <li><a href="#" onclick="showTerms()">서비스 이용약관</a></li>
+            <li><a href="#" onclick="showPrivacy()">개인정보처리방침</a></li>
+            <li><a href="#" onclick="showBusiness()">사업자정보</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-section">
+          <h4>연락처</h4>
+          <ul>
+            <li>이메일: landtalk2025@gmail.com</li>
+            <li>카카오톡: 오픈채팅방</li>
+            <li>운영시간: 평일 09:00-18:00</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+        <p>© 2025 Hanok Radar. All rights reserved.</p>
+      <p>서울시 한옥 현황 지도 서비스 | 베타 운영 중</p>
+    </div>
+  </footer>
+</body>
+</html>
