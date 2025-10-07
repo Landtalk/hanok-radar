@@ -2,7 +2,7 @@
 class AuthSystem {
     constructor() {
         // 앱스 스크립트 웹 앱 URL (직접 설정)
-        this.appsScriptUrl = 'https://script.google.com/macros/s/AKfycby8s7cgC4kkcD6XiVheP7BVWvboMuBmbTVEZF6BAvQCMLTdG-3K6-VqyDkH0OBQ8tN_yg/exec';
+        this.appsScriptUrl = 'https://script.google.com/macros/s/AKfycby3cXnxir4MOZQ7yiBBA5x0n7yy_7A2sS1OzD5TKyGOWjyAY1Y88VeMHKZabeXB62GCeA/exec';
     }
 
     // URL에서 토큰 추출
