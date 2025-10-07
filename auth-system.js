@@ -1,8 +1,8 @@
 // 이메일 인증 및 토큰 관리 시스템
 class AuthSystem {
     constructor() {
-        // 앱스 스크립트 웹 앱 URL (config.js에서 가져옴)
-        this.appsScriptUrl = CONFIG.APPS_SCRIPT_URL;
+        // 앱스 스크립트 웹 앱 URL (직접 설정)
+        this.appsScriptUrl = 'https://script.google.com/macros/s/AKfycby8s7cgC4kkcD6XiVheP7BVWvboMuBmbTVEZF6BAvQCMLTdG-3K6-VqyDkH0OBQ8tN_yg/exec';
     }
 
     // URL에서 토큰 추출
@@ -115,6 +115,11 @@ const authSystem = new AuthSystem();
 
 // 페이지 로드 시 접근 권한 확인
 document.addEventListener('DOMContentLoaded', async function() {
+    // 랜딩페이지에서는 인증 체크 생략
+    if (window.location.pathname.includes('landing.html')) {
+        return;
+    }
+    
     const hasAccess = await authSystem.checkAccess();
     
     if (hasAccess) {
