@@ -1,81 +1,53 @@
-// 이메일 인증 및 토큰 관리 시스템
+// 심플한 이메일 인증 시스템
 class AuthSystem {
     constructor() {
-        // 앱스 스크립트 웹 앱 URL (직접 설정)
-        this.appsScriptUrl = 'https://script.google.com/macros/s/AKfycby3cXnxir4MOZQ7yiBBA5x0n7yy_7A2sS1OzD5TKyGOWjyAY1Y88VeMHKZabeXB62GCeA/exec';
+        // 허용된 이메일 목록 (수동 관리)
+        this.allowedEmails = [
+            'test@example.com',
+            'lovenear97@gmail.com',
+            'landtalk2025@gmail.com'
+            // 필요시 여기에 이메일 추가
+        ];
     }
 
-    // URL에서 토큰 추출
-    getTokenFromUrl() {
-        const urlParams = new URLSearchParams(window.location.search);
-        return urlParams.get('token');
+    // 이메일 검증
+    validateEmail(email) {
+        if (!email) return false;
+        return this.allowedEmails.includes(email.toLowerCase());
     }
 
-    // 앱스 스크립트를 통한 토큰 검증
-    async validateToken(token) {
-        if (!token) return false;
-
-        // 임시: 테스트 토큰 우회
-        if (token === 'test-token-123') {
-            console.log('테스트 토큰 인증 성공');
-            return true;
-        }
-
-        try {
-            console.log('토큰 검증 시도:', token);
-            console.log('Apps Script URL:', this.appsScriptUrl);
-            
-            const response = await fetch(`${this.appsScriptUrl}?token=${token}`);
-            console.log('응답 상태:', response.status);
-            
-            const data = await response.json();
-            console.log('응답 데이터:', data);
-            
-            return data.valid === true;
-        } catch (error) {
-            console.error('토큰 검증 실패:', error);
-            return false;
-        }
+    // 로컬 스토리지에서 이메일 저장/불러오기
+    saveEmail(email) {
+        localStorage.setItem('hanok_radar_email', email);
     }
 
-    // 로컬 스토리지에서 토큰 저장/불러오기
-    saveToken(token) {
-        localStorage.setItem('hanok_radar_token', token);
-    }
-
-    getStoredToken() {
-        return localStorage.getItem('hanok_radar_token');
+    getStoredEmail() {
+        return localStorage.getItem('hanok_radar_email');
     }
 
     // 접근 권한 확인
-    async checkAccess() {
-        // URL에서 토큰 확인
-        const urlToken = this.getTokenFromUrl();
-        if (urlToken) {
-            const isValid = await this.validateToken(urlToken);
-            if (isValid) {
-                this.saveToken(urlToken);
-                return true;
-            }
-        }
-
-        // 로컬 스토리지에서 토큰 확인
-        const storedToken = this.getStoredToken();
-        if (storedToken) {
-            const isValid = await this.validateToken(storedToken);
-            if (isValid) {
-                return true;
-            } else {
-                // 만료된 토큰 제거
-                localStorage.removeItem('hanok_radar_token');
-            }
+    checkAccess() {
+        // 로컬 스토리지에서 이메일 확인
+        const storedEmail = this.getStoredEmail();
+        if (storedEmail && this.validateEmail(storedEmail)) {
+            return true;
         }
 
         return false;
     }
 
-    // 접근 거부 시 랜딩페이지로 리다이렉트
-    redirectToLanding() {
+    // 이메일 로그인 처리
+    login(email) {
+        if (this.validateEmail(email)) {
+            this.saveEmail(email);
+            return true;
+        }
+        return false;
+    }
+
+    // 로그아웃 처리
+    logout() {
+        localStorage.removeItem('hanok_radar_email');
         window.location.href = 'landing.html';
     }
 
@@ -126,13 +98,13 @@ class AuthSystem {
 const authSystem = new AuthSystem();
 
 // 페이지 로드 시 접근 권한 확인
-document.addEventListener('DOMContentLoaded', async function() {
+document.addEventListener('DOMContentLoaded', function() {
     // 랜딩페이지에서는 인증 체크 생략
     if (window.location.pathname.includes('landing.html')) {
         return;
     }
     
-    const hasAccess = await authSystem.checkAccess();
+    const hasAccess = authSystem.checkAccess();
     
     if (hasAccess) {
         authSystem.showMainContent();
@@ -140,11 +112,3 @@ document.addEventListener('DOMContentLoaded', async function() {
         authSystem.showAccessDenied();
     }
 });
-
-// 토큰 만료 체크 (5분마다)
-setInterval(async function() {
-    const hasAccess = await authSystem.checkAccess();
-    if (!hasAccess) {
-        authSystem.redirectToLanding();
-    }
-}, 5 * 60 * 1000);
