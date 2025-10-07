@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>한옥 레이다 - 접근 신청</title>
+    <title>한옥 레이다 - 로그인</title>
     <link rel="stylesheet" href="styles.css">
+    <script defer src="auth-system.js"></script>
     <style>
         .landing-container {
             min-height: 100vh;
@@ -188,8 +189,8 @@
             <div class="email-form">
                 <input type="email" id="emailInput" class="email-input" 
                        placeholder="이메일 주소를 입력해주세요" required>
-                <button id="submitBtn" class="submit-btn" onclick="requestAccess()">
-                    접근 신청하기
+                <button id="submitBtn" class="submit-btn" onclick="loginWithEmail()">
+                    로그인하기
                 </button>
                 <div id="statusMessage" class="status-message"></div>
             </div>
@@ -221,10 +222,10 @@
         }
         
         // 앱스 스크립트 웹 앱 URL (직접 설정)
-        const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby3cXnxir4MOZQ7yiBBA5x0n7yy_7A2sS1OzD5TKyGOWjyAY1Y88VeMHKZabeXB62GCeA/exec';
+        const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxBG0e-mE9Dzy6z96MYoJGwCWgxyOSdebVb1YLOhOALQo2nQfPgu6pBNX6A8HCKMS8cNA/exec';
 
-        // 접근 신청 처리 (임시 로컬 스토리지 방식)
-        async function requestAccess() {
+        // 이메일 로그인 처리
+        async function loginWithEmail() {
             const email = document.getElementById('emailInput').value.trim();
             const submitBtn = document.getElementById('submitBtn');
             
@@ -240,51 +241,34 @@
             
             // 버튼 비활성화
             submitBtn.disabled = true;
-            submitBtn.textContent = '처리 중...';
+            submitBtn.textContent = '로그인 중...';
             
             try {
-                // 임시: 로컬 스토리지에 저장 (CORS 문제 해결 전까지)
-                const requests = JSON.parse(localStorage.getItem('hanok_radar_requests') || '[]');
-                requests.push({
-                    email: email,
-                    timestamp: new Date().toISOString(),
-                    status: 'pending'
-                });
-                localStorage.setItem('hanok_radar_requests', JSON.stringify(requests));
+                // 구글시트에서 이메일 검증
+                const isValid = await authSystem.validateEmail(email);
                 
-                showStatus('✅ 접근 신청이 완료되었습니다! 관리자 승인 후 이메일로 안내드리겠습니다.');
-                document.getElementById('emailInput').value = '';
-                
-                // 실제 Apps Script 호출 시도 (백그라운드)
-                try {
-                    const response = await fetch(APPS_SCRIPT_URL, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({email: email})
-                    });
-                    
-                    if (response.ok) {
-                        console.log('Apps Script 전송 성공');
-                    }
-                } catch (appsScriptError) {
-                    console.log('Apps Script 전송 실패 (로컬 저장됨):', appsScriptError);
+                if (isValid) {
+                    authSystem.saveEmail(email);
+                    showStatus('✅ 로그인 성공! 메인페이지로 이동합니다.');
+                    setTimeout(() => {
+                        window.location.href = 'index.html';
+                    }, 1500);
+                } else {
+                    showStatus('❌ 승인되지 않은 이메일입니다. <a href="https://forms.gle/your-google-form-link" target="_blank">접근 신청하기</a>', true);
                 }
-                
             } catch (error) {
-                console.error('오류:', error);
-                showStatus('❌ 오류가 발생했습니다. 다시 시도해주세요.', true);
+                console.error('로그인 오류:', error);
+                showStatus('❌ 로그인 중 오류가 발생했습니다. <a href="https://forms.gle/your-google-form-link" target="_blank">접근 신청하기</a>', true);
             } finally {
                 submitBtn.disabled = false;
-                submitBtn.textContent = '접근 신청하기';
+                submitBtn.textContent = '로그인하기';
             }
         }
         
         // 엔터키로 제출
         document.getElementById('emailInput').addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
-                requestAccess();
+                loginWithEmail();
             }
         });
     </script>
