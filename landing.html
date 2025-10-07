@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>한옥 레이다 - 접근 신청</title>
     <link rel="stylesheet" href="styles.css">
-    <script defer src="config.js"></script>
     <style>
         .landing-container {
             min-height: 100vh;
@@ -221,8 +220,8 @@
             statusDiv.style.display = 'block';
         }
         
-        // 앱스 스크립트 웹 앱 URL (config.js에서 가져옴)
-        const APPS_SCRIPT_URL = CONFIG.APPS_SCRIPT_URL;
+        // 앱스 스크립트 웹 앱 URL (직접 설정)
+        const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby8s7cgC4kkcD6XiVheP7BVWvboMuBmbTVEZF6BAvQCMLTdG-3K6-VqyDkH0OBQ8tN_yg/exec';
 
         // 접근 신청 처리
         async function requestAccess() {
