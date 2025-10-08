@@ -139,7 +139,7 @@
   .map-title{font-size:1.8em}
   .map-controls{justify-content:center}
   .map-embed iframe{height:60vh}
-  .sidebar{position:static;order:-1}
+  .sidebar{position:static;order:1}
   .sidebar .action-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
   .sidebar .action-card{padding:12px;gap:8px}
   .sidebar .action-icon{font-size:1.5em}
