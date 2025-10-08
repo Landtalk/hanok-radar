@@ -196,7 +196,7 @@
             </div>
             
             <div class="google-form-link">
-                <p>또는 <a href="https://forms.gle/your-google-form-link" target="_blank">구글폼으로 신청하기</a></p>
+                <p>승인되지 않은 이메일인 경우 관리자에게 문의하세요.</p>
             </div>
             
             <div class="footer-info">
@@ -221,11 +221,9 @@
             statusDiv.style.display = 'block';
         }
         
-        // 앱스 스크립트 웹 앱 URL (직접 설정)
-        const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxBG0e-mE9Dzy6z96MYoJGwCWgxyOSdebVb1YLOhOALQo2nQfPgu6pBNX6A8HCKMS8cNA/exec';
 
         // 이메일 로그인 처리
-        async function loginWithEmail() {
+        function loginWithEmail() {
             const email = document.getElementById('emailInput').value.trim();
             const submitBtn = document.getElementById('submitBtn');
             
@@ -244,21 +242,18 @@
             submitBtn.textContent = '로그인 중...';
             
             try {
-                // 구글시트에서 이메일 검증
-                const isValid = await authSystem.validateEmail(email);
-                
-                if (isValid) {
-                    authSystem.saveEmail(email);
+                // 이메일 검증
+                if (authSystem.login(email)) {
                     showStatus('✅ 로그인 성공! 메인페이지로 이동합니다.');
                     setTimeout(() => {
                         window.location.href = 'index.html';
                     }, 1500);
                 } else {
-                    showStatus('❌ 승인되지 않은 이메일입니다. <a href="https://forms.gle/your-google-form-link" target="_blank">접근 신청하기</a>', true);
+                    showStatus('❌ 승인되지 않은 이메일입니다. 관리자에게 문의하세요.', true);
                 }
             } catch (error) {
                 console.error('로그인 오류:', error);
-                showStatus('❌ 로그인 중 오류가 발생했습니다. <a href="https://forms.gle/your-google-form-link" target="_blank">접근 신청하기</a>', true);
+                showStatus('❌ 로그인 중 오류가 발생했습니다.', true);
             } finally {
                 submitBtn.disabled = false;
                 submitBtn.textContent = '로그인하기';
