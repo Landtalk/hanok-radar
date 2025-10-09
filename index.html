@@ -18,9 +18,25 @@
   
   <script>
 
-    // 카카오톡 팝업 함수
+    // 카카오톡 팝업 함수 (스크롤 방지)
     function showKakaoPopup() {
-      alert('카카오톡 오픈채팅방\n\n현재 카카오톡 오픈채팅방은 개설 예정입니다.\n\n곧 서비스가 제공될 예정이니\n잠시만 기다려주세요! 🙏\n\n문의사항이 있으시면\n네이버 카페를 이용해주세요.');
+      const content = `
+        <div style="max-width: 400px; padding: 20px; font-family: Arial, sans-serif; text-align: center;">
+          <h3 style="margin: 0 0 20px 0; color: #2c3e50; border-bottom: 2px solid #007bff; padding-bottom: 10px;">카카오톡 오픈채팅방</h3>
+          
+          <div style="margin-bottom: 20px; font-size: 16px; line-height: 1.6;">
+            <p style="margin-bottom: 15px;">현재 카카오톡 오픈채팅방은 개설 예정입니다.</p>
+            <p style="margin-bottom: 15px;">곧 서비스가 제공될 예정이니<br>잠시만 기다려주세요! 🙏</p>
+            <p style="margin-bottom: 15px;">문의사항이 있으시면<br>네이버 카페를 이용해주세요.</p>
+          </div>
+          
+          <div style="margin-top: 20px;">
+            <a href="https://cafe.naver.com/hanokradar" target="_blank" style="display: inline-block; background: #007bff; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">네이버 카페 바로가기</a>
+          </div>
+        </div>
+      `;
+      
+      showModal('카카오톡 문의', content);
     }
 
     // 큰 지도 보기 팝업 함수
