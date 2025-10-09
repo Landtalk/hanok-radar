@@ -1,32 +1,16 @@
-// 초간단 이메일 인증 시스템 (하드코딩)
+// 가짜 인증 시스템 (모든 이메일 허용)
 class AuthSystem {
     constructor() {
-        // 보안을 위해 이메일 목록을 외부에서 로드
-        this.allowedEmails = [];
-        this.loadAllowedEmails();
+        // 가짜 인증 시스템 - 이메일 목록 불필요
+        console.log('한옥 레이다 인증 시스템 초기화 완료');
     }
 
-    // 허용된 이메일 목록 로드 (GitHub Pages 호환)
-    loadAllowedEmails() {
-        // GitHub Pages에서 바로 작동하는 하드코딩 방식
-        this.allowedEmails = [
-            'lovenear97@gmail.com',
-            'landtalk2025@gmail.com'
-            // 필요시 여기에 이메일 추가
-        ];
-    }
-
-    // 이메일 검증 (구글 계정 우선)
+    // 이메일 검증 (가짜 인증 - 모든 이메일 허용)
     validateEmail(email) {
         if (!email) return false;
         
-        // 구글 계정 우선 검증
-        if (email.endsWith('@gmail.com') || email.endsWith('@googlemail.com')) {
-            return this.allowedEmails.includes(email.toLowerCase());
-        }
-        
-        // 기타 이메일도 허용 (필요시)
-        return this.allowedEmails.includes(email.toLowerCase());
+        // 모든 이메일 허용 (가짜 인증)
+        return true;
     }
 
     // 로컬 스토리지에서 이메일 저장/불러오기 (보안 강화)
@@ -44,24 +28,22 @@ class AuthSystem {
         return sessionStorage.getItem('hanok_radar_email');
     }
 
-    // 접근 권한 확인
+    // 접근 권한 확인 (가짜 인증)
     checkAccess() {
         // 로컬 스토리지에서 이메일 확인
         const storedEmail = this.getStoredEmail();
-        if (storedEmail && this.validateEmail(storedEmail)) {
-            return true;
+        if (storedEmail) {
+            return true; // 이메일이 있으면 무조건 허용
         }
 
         return false;
     }
 
-    // 이메일 로그인 처리
+    // 이메일 로그인 처리 (가짜 인증)
     login(email) {
-        if (this.validateEmail(email)) {
-            this.saveEmail(email);
-            return true;
-        }
-        return false;
+        // 모든 이메일 허용
+        this.saveEmail(email);
+        return true;
     }
 
     // 로그아웃 처리
