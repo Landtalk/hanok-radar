@@ -43,6 +43,7 @@ class AuthSystem {
     login(email) {
         // 모든 이메일 허용
         this.saveEmail(email);
+        this.showMainContent();
         return true;
     }
 
