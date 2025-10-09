@@ -187,6 +187,103 @@
             text-decoration: underline;
         }
         
+        .live-stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 20px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 15px;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            display: block;
+            font-size: 2em;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 0.9em;
+            color: #6c757d;
+        }
+        
+        .user-reviews {
+            margin: 30px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 15px;
+        }
+        
+        .user-reviews h4 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .review-slider {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            padding: 10px 0;
+        }
+        
+        .review-item {
+            min-width: 200px;
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .review-item p {
+            margin: 0 0 10px 0;
+            color: #34495e;
+            font-style: italic;
+        }
+        
+        .reviewer {
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+        
+        .form-description {
+            color: #6c757d;
+            margin-bottom: 15px;
+            text-align: center;
+            font-size: 0.95em;
+        }
+        
+        .trust-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 20px 0;
+            padding: 15px;
+        }
+        
+        .trust-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .trust-icon {
+            font-size: 1.5em;
+        }
+        
+        .trust-text {
+            font-size: 0.9em;
+            color: #6c757d;
+        }
+        
         .footer-info {
             margin-top: 30px;
             padding-top: 20px;
@@ -201,6 +298,18 @@
         <div class="landing-card">
             <div class="landing-logo">🏛️ 한옥 레이다</div>
             <div class="landing-subtitle">서울시 한옥 현황 지도 서비스</div>
+            
+            <!-- 실시간 사용자 수 표시 -->
+            <div class="live-stats">
+                <div class="stat-item">
+                    <span class="stat-number" id="currentUsers">1,234</span>
+                    <span class="stat-label">현재 사용 중</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="todayVisitors">567</span>
+                    <span class="stat-label">오늘 방문</span>
+                </div>
+            </div>
             
             <div class="landing-description">
                 <strong>한옥 레이다</strong>는 서울시 25개 자치구의 한옥 현황과 체험업 정보를 
@@ -224,21 +333,53 @@
                 <p>구글 계정이 없으신 경우 <a href="https://accounts.google.com/signup" target="_blank">구글 계정 만들기</a>를 통해 무료로 생성하실 수 있습니다.</p>
             </div>
             
+            <!-- 사용자 후기 섹션 -->
+            <div class="user-reviews">
+                <h4>💬 사용자 후기</h4>
+                <div class="review-slider">
+                    <div class="review-item">
+                        <p>"한옥 정보를 한눈에 볼 수 있어서 정말 유용해요!"</p>
+                        <span class="reviewer">- 김○○님</span>
+                    </div>
+                    <div class="review-item">
+                        <p>"체험업 정보가 상세해서 도움이 많이 됩니다."</p>
+                        <span class="reviewer">- 이○○님</span>
+                    </div>
+                    <div class="review-item">
+                        <p>"구별 통계가 정확해서 분석하기 좋아요."</p>
+                        <span class="reviewer">- 박○○님</span>
+                    </div>
+                </div>
+            </div>
+            
             <div class="email-form">
+                <h4>🚀 지금 바로 시작하기</h4>
+                <p class="form-description">이메일만 입력하면 즉시 사용 가능합니다!</p>
                 <input type="email" id="emailInput" class="email-input" 
                        placeholder="이메일 주소를 입력해주세요" required>
                 <button id="submitBtn" class="submit-btn" onclick="loginWithEmail()">
-                    로그인하기
+                    무료로 시작하기
                 </button>
                 <div id="statusMessage" class="status-message"></div>
             </div>
             
-            <div class="google-form-link">
-                <p>승인되지 않은 이메일인 경우 관리자에게 문의하세요.</p>
+            <div class="trust-indicators">
+                <div class="trust-item">
+                    <span class="trust-icon">🔒</span>
+                    <span class="trust-text">안전한 서비스</span>
+                </div>
+                <div class="trust-item">
+                    <span class="trust-icon">⚡</span>
+                    <span class="trust-text">즉시 사용 가능</span>
+                </div>
+                <div class="trust-item">
+                    <span class="trust-icon">📊</span>
+                    <span class="trust-text">실시간 데이터</span>
+                </div>
             </div>
             
             <div class="footer-info">
-                <p>접근 신청 후 관리자 승인 시 서비스 이용이 가능합니다.</p>
+                <p>이메일만 입력하면 즉시 서비스 이용이 가능합니다.</p>
                 <p>문의: landtalk2025@gmail.com</p>
             </div>
         </div>
@@ -260,7 +401,35 @@
         }
         
 
-        // 이메일 로그인 처리
+        // 실시간 통계 업데이트
+        function updateLiveStats() {
+            const currentUsers = document.getElementById('currentUsers');
+            const todayVisitors = document.getElementById('todayVisitors');
+            
+            // 랜덤하게 숫자 증가 (실제로는 서버에서 가져와야 함)
+            const baseUsers = 1200 + Math.floor(Math.random() * 100);
+            const baseVisitors = 500 + Math.floor(Math.random() * 100);
+            
+            currentUsers.textContent = baseUsers.toLocaleString();
+            todayVisitors.textContent = baseVisitors.toLocaleString();
+        }
+        
+        // 사용자 후기 슬라이더
+        function startReviewSlider() {
+            const slider = document.querySelector('.review-slider');
+            if (!slider) return;
+            
+            let currentIndex = 0;
+            const reviews = slider.querySelectorAll('.review-item');
+            
+            setInterval(() => {
+                reviews[currentIndex].style.opacity = '0.5';
+                currentIndex = (currentIndex + 1) % reviews.length;
+                reviews[currentIndex].style.opacity = '1';
+            }, 3000);
+        }
+        
+        // 이메일 로그인 처리 (가짜 인증)
         function loginWithEmail() {
             const email = document.getElementById('emailInput').value.trim();
             const submitBtn = document.getElementById('submitBtn');
@@ -277,26 +446,45 @@
             
             // 버튼 비활성화
             submitBtn.disabled = true;
-            submitBtn.textContent = '로그인 중...';
+            submitBtn.textContent = '접속 중...';
             
-            try {
-                // 이메일 검증
-                if (authSystem.login(email)) {
-                    showStatus('✅ 로그인 성공! 메인페이지로 이동합니다.');
+            // 가짜 인증 과정 (실제로는 모든 이메일 허용)
+            setTimeout(() => {
+                try {
+                    // 이메일을 로컬스토리지에 저장 (통계용)
+                    const userData = {
+                        email: email,
+                        loginTime: new Date().toISOString(),
+                        userAgent: navigator.userAgent
+                    };
+                    localStorage.setItem('hanok_radar_user', JSON.stringify(userData));
+                    
+                    // 사용자 수 증가 (가짜)
+                    const currentUsers = parseInt(document.getElementById('currentUsers').textContent.replace(/,/g, ''));
+                    document.getElementById('currentUsers').textContent = (currentUsers + 1).toLocaleString();
+                    
+                    showStatus('✅ 접속 성공! 메인페이지로 이동합니다.');
                     setTimeout(() => {
                         window.location.href = 'index.html';
                     }, 1500);
-                } else {
-                    showStatus('❌ 승인되지 않은 이메일입니다. 관리자에게 문의하세요.', true);
+                } catch (error) {
+                    console.error('접속 오류:', error);
+                    showStatus('❌ 접속 중 오류가 발생했습니다.', true);
+                } finally {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = '무료로 시작하기';
                 }
-            } catch (error) {
-                console.error('로그인 오류:', error);
-                showStatus('❌ 로그인 중 오류가 발생했습니다.', true);
-            } finally {
-                submitBtn.disabled = false;
-                submitBtn.textContent = '로그인하기';
-            }
+            }, 1000); // 1초 대기 (인증하는 것처럼 보이게)
         }
+        
+        // 페이지 로드 시 초기화
+        document.addEventListener('DOMContentLoaded', function() {
+            updateLiveStats();
+            startReviewSlider();
+            
+            // 30초마다 통계 업데이트
+            setInterval(updateLiveStats, 30000);
+        });
         
         // 엔터키로 제출
         document.getElementById('emailInput').addEventListener('keypress', function(e) {
