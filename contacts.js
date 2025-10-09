@@ -167,39 +167,50 @@ class HanokContacts {
     console.log('📞 한옥 담당 부서 연락처 시스템 초기화 완료');
   }
 
-  // 연락처 모달 표시
+  // 연락처 모달 표시 (스크롤 방지)
   showContacts() {
-    const modal = document.getElementById('contactsModal');
-    const contactsList = document.getElementById('contactsList');
-    
-    // 연락처 목록 렌더링
-    contactsList.innerHTML = this.contacts.map(contact => `
-      <div class="contact-item">
-        <div class="contact-department">${contact.department}</div>
-        <div class="contact-info">
-          <div class="contact-area">📍 ${contact.area}</div>
-          <div class="contact-description">${contact.description}</div>
-          <a href="tel:${contact.phone}" class="contact-phone">📞 ${contact.phone}</a>
+    const content = `
+      <div style="max-width: 600px; padding: 20px; font-family: Arial, sans-serif;">
+        <h3 style="margin: 0 0 20px 0; color: #2c3e50; border-bottom: 2px solid #007bff; padding-bottom: 10px;">🏛️ 한옥 담당 부서 연락처</h3>
+        
+        <div style="max-height: 400px; overflow-y: auto; margin-bottom: 20px;">
+          ${this.contacts.map(contact => `
+            <div style="border: 1px solid #e9ecef; border-radius: 8px; padding: 15px; margin-bottom: 10px; background: #f8f9fa;">
+              <div style="font-weight: bold; color: #2c3e50; margin-bottom: 8px;">${contact.department}</div>
+              <div style="color: #6c757d; margin-bottom: 5px;">📍 ${contact.area}</div>
+              <div style="color: #495057; margin-bottom: 8px; font-size: 14px;">${contact.description}</div>
+              <a href="tel:${contact.phone}" style="color: #007bff; text-decoration: none; font-weight: bold;">📞 ${contact.phone}</a>
+            </div>
+          `).join('')}
+        </div>
+        
+        <div style="text-align: center; margin-top: 20px;">
+          <button onclick="hanokContacts.exportContacts()" style="background: #007bff; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; margin-right: 10px;">연락처 내보내기</button>
         </div>
       </div>
-    `).join('');
-
-    // 모달 표시
-    modal.style.display = 'block';
+    `;
     
-    // 모달 외부 클릭 시 닫기
-    window.onclick = (event) => {
-      if (event.target === modal) {
-        this.hideContacts();
-      }
-    };
+    // 공통 모달 함수 사용 (스크롤 방지)
+    if (typeof showModal === 'function') {
+      showModal('한옥 담당 부서 연락처', content);
+    } else {
+      // fallback: 기존 방식
+      const modal = document.getElementById('contactsModal');
+      const contactsList = document.getElementById('contactsList');
+      
+      contactsList.innerHTML = this.contacts.map(contact => `
+        <div class="contact-item">
+          <div class="contact-department">${contact.department}</div>
+          <div class="contact-info">
+            <div class="contact-area">📍 ${contact.area}</div>
+            <div class="contact-description">${contact.description}</div>
+            <a href="tel:${contact.phone}" class="contact-phone">📞 ${contact.phone}</a>
+          </div>
+        </div>
+      `).join('');
 
-    // ESC 키로 닫기
-    document.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape') {
-        this.hideContacts();
-      }
-    });
+      modal.style.display = 'block';
+    }
 
     console.log('📞 연락처 모달 표시됨');
   }
