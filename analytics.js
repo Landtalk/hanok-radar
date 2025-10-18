@@ -316,6 +316,63 @@ class HanokAnalytics {
     
     return recommendations;
   }
+
+  // 실제 방문자 카운팅 시스템
+  static incrementRealVisitor() {
+    const today = new Date().toDateString();
+    const data = JSON.parse(localStorage.getItem('hanok_radar_real_stats') || '{"date":"","visitors":0,"sessions":0}');
+    
+    // 새로운 날이면 초기화
+    if (data.date !== today) {
+      data.date = today;
+      data.visitors = 0;
+      data.sessions = 0;
+    }
+    
+    // 방문자 수 증가
+    data.visitors += 1;
+    data.sessions += 1;
+    
+    localStorage.setItem('hanok_radar_real_stats', JSON.stringify(data));
+    return data;
+  }
+
+  // 실제 통계 데이터 가져오기
+  static getRealStats() {
+    const today = new Date().toDateString();
+    const data = JSON.parse(localStorage.getItem('hanok_radar_real_stats') || '{"date":"","visitors":0,"sessions":0}');
+    
+    // 현재 접속자 수 (세션 기반)
+    const currentSessions = JSON.parse(sessionStorage.getItem('hanok_radar_active_sessions') || '[]');
+    const activeSessions = currentSessions.filter(session => 
+      Date.now() - session.timestamp < 300000 // 5분 이내 활동
+    ).length;
+    
+    return {
+      todayVisitors: data.date === today ? data.visitors : 0,
+      currentUsers: Math.max(1, activeSessions), // 최소 1명
+      totalSessions: data.sessions,
+      lastUpdated: new Date().toISOString()
+    };
+  }
+
+  // 활성 세션 등록
+  static registerActiveSession() {
+    const sessionId = 'session_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+    const session = {
+      id: sessionId,
+      timestamp: Date.now()
+    };
+    
+    const activeSessions = JSON.parse(sessionStorage.getItem('hanok_radar_active_sessions') || '[]');
+    activeSessions.push(session);
+    
+    // 5분 이상 된 세션 제거
+    const validSessions = activeSessions.filter(s => Date.now() - s.timestamp < 300000);
+    sessionStorage.setItem('hanok_radar_active_sessions', JSON.stringify(validSessions));
+    
+    return sessionId;
+  }
 }
 
 // 전역 인스턴스 생성
