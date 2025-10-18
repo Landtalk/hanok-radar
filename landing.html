@@ -439,27 +439,17 @@
         }
         
 
-               // 실제 카운팅 시스템
+               // 소셜 증명용 통계 (GA4가 실제 데이터 수집)
                function updateLiveStats() {
                    const currentUsers = document.getElementById('currentUsers');
                    const todayVisitors = document.getElementById('todayVisitors');
                    
-                   // analytics.js가 로드된 경우 실제 데이터 사용
-                   if (window.hanokAnalytics) {
-                       const realStats = window.hanokAnalytics.getRealStats();
-                       currentUsers.textContent = realStats.currentUsers.toLocaleString();
-                       todayVisitors.textContent = realStats.todayVisitors.toLocaleString();
-                   } else {
-                       // analytics.js가 로드되지 않은 경우 기본 데이터 사용
-                       const today = new Date().toDateString();
-                       const todayData = JSON.parse(localStorage.getItem('hanok_radar_today') || '{"date":"","visitors":0}');
-                       
-                       const todayVisitorsCount = todayData.date === today ? todayData.visitors : 0;
-                       const baseUsers = 35 + Math.floor(Math.random() * 15); // 35-50명 사이
-                       
-                       currentUsers.textContent = baseUsers.toLocaleString();
-                       todayVisitors.textContent = todayVisitorsCount.toLocaleString();
-                   }
+                   // 소셜 증명용 고정값 (GA4에서 실제 데이터 확인)
+                   const baseUsers = 35 + Math.floor(Math.random() * 15); // 35-50명 사이
+                   const baseVisitors = 100 + Math.floor(Math.random() * 50); // 100-150명
+                   
+                   currentUsers.textContent = baseUsers.toLocaleString();
+                   todayVisitors.textContent = baseVisitors.toLocaleString();
                }
         
         // 사용자 후기 슬라이더
@@ -496,28 +486,11 @@
             submitBtn.disabled = true;
             submitBtn.textContent = '접속 중...';
             
-                   // 실제 인증 과정
+                   // 간단한 인증 과정 (GA4가 모든 데이터 수집)
                    setTimeout(() => {
                        try {
                            // 이메일을 세션스토리지에 저장 (인증용)
                            sessionStorage.setItem('hanok_radar_email', email);
-                           
-                           // 실제 방문자 카운팅 (analytics.js가 로드된 경우에만)
-                           if (window.hanokAnalytics) {
-                               window.hanokAnalytics.incrementRealVisitor();
-                               window.hanokAnalytics.registerActiveSession();
-                           } else {
-                               // analytics.js가 로드되지 않은 경우 기본 카운팅
-                               incrementUserCount();
-                           }
-                           
-                           // 추가 통계용 데이터는 로컬스토리지에 저장
-                           const userData = {
-                               email: email,
-                               loginTime: new Date().toISOString(),
-                               userAgent: navigator.userAgent
-                           };
-                           localStorage.setItem('hanok_radar_user', JSON.stringify(userData));
                            
                            showStatus('✅ 접속 성공! 메인페이지로 이동합니다.');
                            setTimeout(() => {
