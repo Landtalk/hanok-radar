@@ -439,34 +439,17 @@
         }
         
 
-        // 실제 카운팅 시스템
-        function updateLiveStats() {
-            const currentUsers = document.getElementById('currentUsers');
-            const todayVisitors = document.getElementById('todayVisitors');
-            
-            // 오늘 방문자 수 (로컬스토리지 기반)
-            const today = new Date().toDateString();
-            const todayData = JSON.parse(localStorage.getItem('hanok_radar_today') || '{"date":"","visitors":0}');
-            
-            if (todayData.date !== today) {
-                // 새로운 날이면 초기화
-                todayData.date = today;
-                todayData.visitors = 0;
-            }
-            
-            // 현재 사용자 수 (세션 기반, 약간의 랜덤 요소)
-            const baseUsers = 35 + Math.floor(Math.random() * 15); // 35-50명 사이
-            
-            // 오늘 방문자 수 (실제 카운팅)
-            const todayVisitorsCount = todayData.visitors + Math.floor(Math.random() * 3); // 0-2명씩 증가
-            
-            currentUsers.textContent = baseUsers.toLocaleString();
-            todayVisitors.textContent = todayVisitorsCount.toLocaleString();
-            
-            // 오늘 데이터 저장
-            todayData.visitors = todayVisitorsCount;
-            localStorage.setItem('hanok_radar_today', JSON.stringify(todayData));
-        }
+               // 실제 카운팅 시스템
+               function updateLiveStats() {
+                   const currentUsers = document.getElementById('currentUsers');
+                   const todayVisitors = document.getElementById('todayVisitors');
+                   
+                   // 실제 통계 데이터 가져오기
+                   const realStats = window.hanokAnalytics.getRealStats();
+                   
+                   currentUsers.textContent = realStats.currentUsers.toLocaleString();
+                   todayVisitors.textContent = realStats.todayVisitors.toLocaleString();
+               }
         
         // 사용자 후기 슬라이더
         function startReviewSlider() {
@@ -502,56 +485,45 @@
             submitBtn.disabled = true;
             submitBtn.textContent = '접속 중...';
             
-            // 가짜 인증 과정 (실제로는 모든 이메일 허용)
-            setTimeout(() => {
-                try {
-                    // 이메일을 세션스토리지에 저장 (인증용)
-                    sessionStorage.setItem('hanok_radar_email', email);
-                    
-                    // 추가 통계용 데이터는 로컬스토리지에 저장
-                    const userData = {
-                        email: email,
-                        loginTime: new Date().toISOString(),
-                        userAgent: navigator.userAgent
-                    };
-                    localStorage.setItem('hanok_radar_user', JSON.stringify(userData));
-                    
-                    // 실제 사용자 수 증가
-                    incrementUserCount();
-                    
-                    showStatus('✅ 접속 성공! 메인페이지로 이동합니다.');
-                    setTimeout(() => {
-                        window.location.href = 'index.html';
-                    }, 1500);
-                } catch (error) {
-                    console.error('접속 오류:', error);
-                    showStatus('❌ 접속 중 오류가 발생했습니다.', true);
-                } finally {
-                    submitBtn.disabled = false;
-                    submitBtn.textContent = '무료로 시작하기';
-                }
-            }, 1000); // 1초 대기 (인증하는 것처럼 보이게)
+                   // 실제 인증 과정
+                   setTimeout(() => {
+                       try {
+                           // 이메일을 세션스토리지에 저장 (인증용)
+                           sessionStorage.setItem('hanok_radar_email', email);
+                           
+                           // 실제 방문자 카운팅
+                           window.hanokAnalytics.incrementRealVisitor();
+                           
+                           // 활성 세션 등록
+                           window.hanokAnalytics.registerActiveSession();
+                           
+                           // 추가 통계용 데이터는 로컬스토리지에 저장
+                           const userData = {
+                               email: email,
+                               loginTime: new Date().toISOString(),
+                               userAgent: navigator.userAgent
+                           };
+                           localStorage.setItem('hanok_radar_user', JSON.stringify(userData));
+                           
+                           showStatus('✅ 접속 성공! 메인페이지로 이동합니다.');
+                           setTimeout(() => {
+                               window.location.href = 'index.html';
+                           }, 1500);
+                       } catch (error) {
+                           console.error('접속 오류:', error);
+                           showStatus('❌ 접속 중 오류가 발생했습니다.', true);
+                       } finally {
+                           submitBtn.disabled = false;
+                           submitBtn.textContent = '무료로 시작하기';
+                       }
+                   }, 1000); // 1초 대기 (인증하는 것처럼 보이게)
         }
         
-        // 사용자 수 증가 함수
-        function incrementUserCount() {
-            const today = new Date().toDateString();
-            const todayData = JSON.parse(localStorage.getItem('hanok_radar_today') || '{"date":"","visitors":0}');
-            
-            if (todayData.date !== today) {
-                todayData.date = today;
-                todayData.visitors = 0;
-            }
-            
-            todayData.visitors += 1;
-            localStorage.setItem('hanok_radar_today', JSON.stringify(todayData));
-            
-            // 화면에 즉시 반영
-            const todayVisitors = document.getElementById('todayVisitors');
-            if (todayVisitors) {
-                todayVisitors.textContent = todayData.visitors.toLocaleString();
-            }
-        }
+               // 사용자 수 증가 함수 (이제 analytics.js에서 처리)
+               function incrementUserCount() {
+                   // analytics.js의 incrementRealVisitor()로 대체됨
+                   updateLiveStats();
+               }
         
         // 페이지 로드 시 초기화
         document.addEventListener('DOMContentLoaded', function() {
