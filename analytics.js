@@ -28,7 +28,7 @@ class HanokAnalytics {
   // Google Analytics 4 설정
   setupGoogleAnalytics() {
     // GA4 측정 ID (직접 설정)
-    const measurementId = ''; // 필요시 설정
+    const measurementId = 'G-D3G79CD34J'; // 한옥레이다 GA4 측정 ID
     
     if (!measurementId) {
       console.warn('⚠️ GA4 측정 ID가 설정되지 않았습니다. analytics.js에서 measurementId를 설정하세요.');
