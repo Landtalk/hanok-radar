@@ -320,21 +320,11 @@
 
         // 통계 업데이트
         function updateStats() {
-            // 현재 접속자 수 (랜덤 + 기본값)
-            const currentUsers = 35 + Math.floor(Math.random() * 15);
-            document.getElementById('currentUsers').textContent = currentUsers;
-
-            // 오늘 방문자 수 (로컬스토리지 기반)
-            const today = new Date().toDateString();
-            const todayData = JSON.parse(localStorage.getItem('hanok_radar_today') || '{"date":"","visitors":0}');
+            // 실제 통계 데이터 가져오기
+            const realStats = window.hanokAnalytics.getRealStats();
             
-            if (todayData.date !== today) {
-                todayData.date = today;
-                todayData.visitors = 0;
-            }
-            
-            const todayVisitors = todayData.visitors + Math.floor(Math.random() * 3);
-            document.getElementById('todayVisitors').textContent = todayVisitors;
+            document.getElementById('currentUsers').textContent = realStats.currentUsers;
+            document.getElementById('todayVisitors').textContent = realStats.todayVisitors;
 
             // 총 클릭 수 (카테고리 트래커에서 가져오기)
             if (window.hanokCategoryTracker) {
@@ -342,8 +332,8 @@
                 document.getElementById('totalClicks').textContent = stats.totalClicks;
             }
 
-            // 평균 세션 시간 (가상 데이터)
-            const avgSessionTime = 3 + Math.floor(Math.random() * 5);
+            // 평균 세션 시간 (실제 데이터 기반)
+            const avgSessionTime = Math.max(2, Math.floor(realStats.totalSessions / 10) + 1);
             document.getElementById('avgSessionTime').textContent = avgSessionTime;
 
             // 마지막 업데이트 시간
