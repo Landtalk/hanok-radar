@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>숙박업 추천 물품 - 한옥 레이다</title>
+  <meta name="description" content="외도민박·한옥체험업 운영에 필요한 침구, 욕실용품, 청소·소모품 등 단톡방 추천 물품을 한눈에.">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" type="image/png" href="favicon.ico.png">
+  <style>
+    body { background: #f8f9fa; }
+    .shop-page { max-width: 900px; margin: 0 auto; padding: 20px 16px 40px; }
+    .shop-hero {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 32px 24px;
+      border-radius: 20px;
+      text-align: center;
+      margin-bottom: 24px;
+    }
+    .shop-hero h1 { font-size: 1.8em; margin: 0 0 10px 0; }
+    .shop-hero p { font-size: 1em; opacity: 0.95; margin: 0; line-height: 1.5; }
+    .back-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: #fff; color: #495057; border: 1px solid #dee2e6;
+      padding: 10px 18px; border-radius: 10px; font-weight: 600; text-decoration: none;
+      margin-bottom: 20px; transition: all 0.2s;
+    }
+    .back-btn:hover { background: #e9ecef; border-color: #adb5bd; color: #212529; }
+    /* 쿠팡 파트너스 필수 고지 (정책 준수) */
+    .partners-disclosure {
+      background: #fff8e6; border: 1px solid #f0e6c8;
+      border-radius: 12px; padding: 14px 18px; margin-bottom: 28px;
+      font-size: 0.9em; color: #5c4a00; line-height: 1.5;
+    }
+    .partners-disclosure strong { color: #3d3200; }
+    .shop-intro {
+      background: #fff; border-radius: 12px; padding: 20px; margin-bottom: 28px;
+      border: 1px solid #e9ecef; color: #495057; font-size: 0.95em; line-height: 1.6;
+    }
+    .shop-category {
+      background: #fff; border-radius: 16px; padding: 24px; margin-bottom: 24px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06); border: 1px solid #e9ecef;
+    }
+    .shop-category h2 {
+      font-size: 1.25em; color: #2c3e50; margin: 0 0 16px 0;
+      padding-bottom: 10px; border-bottom: 2px solid #e9ecef;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .shop-category .category-icon { font-size: 1.2em; }
+    .product-list { list-style: none; padding: 0; margin: 0; }
+    .product-item {
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+      padding: 14px 0; border-bottom: 1px solid #f0f0f0;
+      flex-wrap: wrap;
+    }
+    .product-item:last-child { border-bottom: none; }
+    .product-info { flex: 1; min-width: 0; }
+    .product-name { font-weight: 600; color: #2c3e50; margin-bottom: 4px; }
+    .product-desc { font-size: 0.85em; color: #6c757d; line-height: 1.4; }
+    .product-link {
+      display: inline-block; padding: 8px 16px; background: #007bff; color: #fff;
+      border-radius: 8px; font-size: 0.9em; font-weight: 500; text-decoration: none;
+      white-space: nowrap; transition: all 0.2s;
+    }
+    .product-link:hover { background: #0056b3; color: #fff; }
+    @media (max-width: 600px) {
+      .product-item { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <div class="shop-page">
+    <a href="index.html" class="back-btn">← 메인으로</a>
+
+    <div class="shop-hero">
+      <h1>🛒 숙박업 추천 물품</h1>
+      <p>외도민박·한옥체험업 운영 시 준비하면 좋은 물품들을 단톡방 추천 기준으로 정리했습니다.</p>
+    </div>
+
+    <!-- 쿠팡 파트너스 정책: 필수 고지 문구 (페이지 상단 노출) -->
+    <div class="partners-disclosure" role="complementary">
+      <strong>알림:</strong> 이 페이지의 일부 링크는 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.
+    </div>
+
+    <div class="shop-intro">
+      가전, 인테리어, 침구·욕실·청소·주방·안전·소모품 등 업종별로 자주 쓰는 품목만 골라 모았습니다. 가격·재고는 쿠팡에서 확인해 주세요.
+    </div>
+
+    <!-- 가전제품 -->
+    <section class="shop-category">
+      <h2><span class="category-icon">🔌</span> 가전제품</h2>
+      <ul class="product-list">
+        <li class="product-item">
+          <div class="product-info">
+            <div class="product-name">삼성 세탁기+건조기</div>
+            <div class="product-desc">세탁·건조 올인원</div>
+          </div>
+          <a href="https://link.coupang.com/a/dS8vvZ" target="_blank" rel="noopener noreferrer" class="product-link">상품 보기</a>
+        </li>
+        <li class="product-item">
+          <div class="product-info">
+            <div class="product-name">드럼세탁기 21kg</div>
+            <div class="product-desc">대용량 세탁</div>
+          </div>
+          <a href="https://link.coupang.com/a/dS79gy" target="_blank" rel="noopener noreferrer" class="product-link">상품 보기</a>
+        </li>
+        <li class="product-item">
+          <div class="product-info">
+            <div class="product-name">건조기 9kg</div>
+            <div class="product-desc">침구·수건 건조</div>
+          </div>
+          <a href="https://link.coupang.com/a/dS8wcK" target="_blank" rel="noopener noreferrer" class="product-link">상품 보기</a>
+        </li>
+        <li class="product-item">
+          <div class="product-info">
+            <div class="product-name">냉장고</div>
+            <div class="product-desc">주방·조식 재료 보관</div>
+          </div>
+          <a href="https://link.coupang.com/a/dS8BxK" target="_blank" rel="noopener noreferrer" class="product-link">상품 보기</a>
+        </li>
+        <li class="product-item">
+          <div class="product-info">
+            <div class="product-name">냉온풍기</div>
+            <div class="product-desc">사계절 냉난방</div>
+          </div>
+          <a href="https://link.coupang.com/a/dS8aeO" target="_blank" rel="noopener noreferrer" class="product-link">상품 보기</a>
+        </li>
+        <li class="product-item">
+          <div class="product-info">
+            <div class="product-name">타워 온풍기</div>
+            <div class="product-desc">겨울 난방 보조</div>
+          </div>
+          <a href="https://link.coupang.com/a/dS8f4M" target="_blank" rel="noopener noreferrer" class="product-link">상품 보기</a>
+        </li>
+        <li class="product-item">
+          <div class="product-info">
+            <div class="product-name">욕실 걸이식 온풍기</div>
+            <div class="product-desc">욕실 난방·건조</div>
+          </div>
+          <a href="https://link.coupang.com/a/dS8hmd" target="_blank" rel="noopener noreferrer" class="product-link">상품 보기</a>
+        </li>
+        <li class="product-item">
+          <div class="product-info">
+            <div class="product-name">스마트 도어락</div>
+            <div class="product-desc">비밀번호·원격 출입</div>
+          </div>
+          <a href="https://link.coupang.com/a/dS75qt" target="_blank" rel="noopener noreferrer" class="product-link">상품 보기</a>
+        </li>
+        <li class="product-item">
+          <div class="product-info">
+            <div class="product-name">스마트 플러그</div>
+            <div class="product-desc">전원 원격·예약 제어</div>
+          </div>
+          <a href="https://link.coupang.com/a/dS8e3x" target="_blank" rel="noopener noreferrer" class="product-link">상품 보기</a>
+        </li>
+        <li class="product-item">
+          <div class="product-info">
+            <div class="product-name">스마트 홈카메라</div>
+            <div class="product-desc">실내 감시·녹화</div>
+          </div>
+          <a href="https://link.coupang.com/a/dS8kXY" target="_blank" rel="noopener noreferrer" class="product-link">상품 보기</a>
+        </li>
+        <li class="product-item">
+          <div class="product-info">
+            <div class="product-name">스마트 홈 CCTV 실외용</div>
+            <div class="product-desc">현관·주변 감시</div>
+          </div>
+          <a href="https://link.coupang.com/a/dS8lV5" target="_blank" rel="noopener noreferrer" class="product-link">상품 보기</a>
+        </li>
+        <li class="product-item">
+          <div class="product-info">
+            <div class="product-name">제습기</div>
+            <div class="product-desc">습기·곰팡이 예방</div>
+          </div>
+          <a href="https://link.coupang.com/a/dS8paw" target="_blank" rel="noopener noreferrer" class="product-link">상품 보기</a>
+        </li>
+      </ul>
+    </section>
+
+    <!-- 인테리어 -->
+    <section class="shop-category">
+      <h2><span class="category-icon">🪟</span> 인테리어</h2>
+      <ul class="product-list">
+        <li class="product-item">
+          <div class="product-info">
+            <div class="product-name">방범용 블라인드</div>
+            <div class="product-desc">창문 시인성 차단</div>
+          </div>
+          <a href="https://link.coupang.com/a/dS8xYW" target="_blank" rel="noopener noreferrer" class="product-link">상품 보기</a>
+        </li>
+        <li class="product-item">
+          <div class="product-info">
+            <div class="product-name">방한 커튼</div>
+            <div class="product-desc">겨울 보온</div>
+          </div>
+          <a href="https://link.coupang.com/a/dS8ziy" target="_blank" rel="noopener noreferrer" class="product-link">상품 보기</a>
+        </li>
+        <li class="product-item">
+          <div class="product-info">
+            <div class="product-name">생활암막커튼</div>
+            <div class="product-desc">암막·차광</div>
+          </div>
+          <a href="https://link.coupang.com/a/dS8zQr" target="_blank" rel="noopener noreferrer" class="product-link">상품 보기</a>
+        </li>
+        <li class="product-item">
+          <div class="product-info">
+            <div class="product-name">원형 스툴</div>
+            <div class="product-desc">객실·공용 공간</div>
+          </div>
+          <a href="https://link.coupang.com/a/dS8JKr" target="_blank" rel="noopener noreferrer" class="product-link">상품 보기</a>
+        </li>
+        <li class="product-item">
+          <div class="product-info">
+            <div class="product-name">외부 보관함</div>
+            <div class="product-desc">야외 수납·정리</div>
+          </div>
+          <a href="https://link.coupang.com/a/dS8MC0" target="_blank" rel="noopener noreferrer" class="product-link">상품 보기</a>
+        </li>
+      </ul>
+    </section>
+
+    <!-- 침구·세탁 -->
+    <section class="shop-category">
+      <h2><span class="category-icon">🛏️</span> 침구·세탁</h2>
+      <ul class="product-list">
+        <li class="product-item">
+          <div class="product-info">
+            <div class="product-name">매트리스(슈퍼싱글)</div>
+            <div class="product-desc">객실 침대용</div>
+          </div>
+          <a href="https://link.coupang.com/a/dS8qgX" target="_blank" rel="noopener noreferrer" class="product-link">상품 보기</a>
+        </li>
+        <li class="product-item">
+          <div class="product-info">
+            <div class="product-name">메트리스 패드</div>
+            <div class="product-desc">매트리스 보호·쾌적</div>
+          </div>
+          <a href="https://link.coupang.com/a/dS8d5U" target="_blank" rel="noopener noreferrer" class="product-link">상품 보기</a>
+        </li>
+        <li class="product-item">
+          <div class="product-info">
+            <div class="product-name">접이식 매트리스</div>
+            <div class="product-desc">공간 활용·추가 침구</div>
+          </div>
+          <a href="https://link.coupang.com/a/dS8C0L" target="_blank" rel="noopener noreferrer" class="product-link">상품 보기</a>
+        </li>
+        <li class="product-item">
+          <div class="product-info">
+            <div class="product-name">이불커버</div>
+            <div class="product-desc">침구 교체·세탁용</div>
+          </div>
+          <a href="https://link.coupang.com/a/dS8w3n" target="_blank" rel="noopener noreferrer" class="product-link">상품 보기</a>
+        </li>
+        <li class="product-item">
+          <div class="product-info">
+            <div class="product-name">전기요</div>
+            <div class="product-desc">겨울 침구 난방</div>
+          </div>
+          <a href="https://link.coupang.com/a/dS8ucB" target="_blank" rel="noopener noreferrer" class="product-link">상품 보기</a>
+        </li>
+        <li class="product-item">
+          <div class="product-info">
+            <div class="product-name">세탁 세제</div>
+            <div class="product-desc">침구·수건 세탁</div>
+          </div>
+          <a href="https://link.coupang.com/a/dS8Ljq" target="_blank" rel="noopener noreferrer" class="product-link">상품 보기</a>
+        </li>
+      </ul>
+    </section>
+
+    <!-- 욕실·세면 -->
+    <section class="shop-category">
+      <h2><span class="category-icon">🚿</span> 욕실·세면</h2>
+      <ul class="product-list">
+        <li class="product-item">
+          <div class="product-info">
+            <div class="product-name">풋샴푸</div>
+            <div class="product-desc">욕실 비품</div>
+          </div>
+          <a href="https://link.coupang.com/a/dS76zv" target="_blank" rel="noopener noreferrer" class="product-link">상품 보기</a>
+        </li>
+        <li class="product-item">
+          <div class="product-info">
+            <div class="product-name">변기커버</div>
+            <div class="product-desc">변기 교체·청결</div>
+          </div>
+          <a href="https://link.coupang.com/a/dS8GP4" target="_blank" rel="noopener noreferrer" class="product-link">상품 보기</a>
+        </li>
+        <li class="product-item">
+          <div class="product-info">
+            <div class="product-name">헤어 드라이기</div>
+            <div class="product-desc">손님용 구비</div>
+          </div>
+          <a href="https://link.coupang.com/a/dS8qUf" target="_blank" rel="noopener noreferrer" class="product-link">상품 보기</a>
+        </li>
+        <li class="product-item">
+          <div class="product-info">
+            <div class="product-name">수건</div>
+            <div class="product-desc">얼굴·몸 수건</div>
+          </div>
+          <a href="https://link.coupang.com/a/dS8DT6" target="_blank" rel="noopener noreferrer" class="product-link">상품 보기</a>
+        </li>
+        <li class="product-item">
+          <div class="product-info">
+            <div class="product-name">치약·칫솔 일회용</div>
+            <div class="product-desc">손님용 구비품</div>
+          </div>
+          <a href="https://link.coupang.com/a/dS8GeN" target="_blank" rel="noopener noreferrer" class="product-link">상품 보기</a>
+        </li>
+      </ul>
+    </section>
+
+    <!-- 청소·관리 -->
+    <section class="shop-category">
+      <h2><span class="category-icon">🧹</span> 청소·관리</h2>
+      <ul class="product-list">
+        <li class="product-item">
+          <div class="product-info">
+            <div class="product-name">다이슨 청소기</div>
+            <div class="product-desc">강력 흡입·청소</div>
+          </div>
+          <a href="https://link.coupang.com/a/dS8EP7" target="_blank" rel="noopener noreferrer" class="product-link">상품 보기</a>
+        </li>
+        <li class="product-item">
+          <div class="product-info">
+            <div class="product-name">실내탈취제</div>
+            <div class="product-desc">객실·화장실 냄새 제거</div>
+          </div>
+          <a href="https://link.coupang.com/a/dS7ZUh" target="_blank" rel="noopener noreferrer" class="product-link">상품 보기</a>
+        </li>
+        <li class="product-item">
+          <div class="product-info">
+            <div class="product-name">곰팡이세정제</div>
+            <div class="product-desc">욕실·창문 곰팡이 제거</div>
+          </div>
+          <a href="https://link.coupang.com/a/dS8a77" target="_blank" rel="noopener noreferrer" class="product-link">상품 보기</a>
+        </li>
+        <li class="product-item">
+          <div class="product-info">
+            <div class="product-name">배수구 청소클리너</div>
+            <div class="product-desc">배수구 막힘·악취 예방</div>
+          </div>
+          <a href="https://link.coupang.com/a/dS8b0H" target="_blank" rel="noopener noreferrer" class="product-link">상품 보기</a>
+        </li>
+        <li class="product-item">
+          <div class="product-info">
+            <div class="product-name">쓰레기통</div>
+            <div class="product-desc">객실·화장실·주방</div>
+          </div>
+          <a href="https://link.coupang.com/a/dS8dbo" target="_blank" rel="noopener noreferrer" class="product-link">상품 보기</a>
+        </li>
+      </ul>
+    </section>
+
+    <!-- 주방·식기 -->
+    <section class="shop-category">
+      <h2><span class="category-icon">🍽️</span> 주방·식기</h2>
+      <ul class="product-list">
+        <li class="product-item">
+          <div class="product-info">
+            <div class="product-name">전기밥솥</div>
+            <div class="product-desc">조식·밥 준비</div>
+          </div>
+          <a href="https://link.coupang.com/a/dS8nFT" target="_blank" rel="noopener noreferrer" class="product-link">상품 보기</a>
+        </li>
+        <li class="product-item">
+          <div class="product-info">
+            <div class="product-name">전자렌지</div>
+            <div class="product-desc">간단 조리·데우기</div>
+          </div>
+          <a href="https://link.coupang.com/a/dS8OIh" target="_blank" rel="noopener noreferrer" class="product-link">상품 보기</a>
+        </li>
+        <li class="product-item">
+          <div class="product-info">
+            <div class="product-name">인덕션</div>
+            <div class="product-desc">주방 조리</div>
+          </div>
+          <a href="https://link.coupang.com/a/dS8jRe" target="_blank" rel="noopener noreferrer" class="product-link">상품 보기</a>
+        </li>
+        <li class="product-item">
+          <div class="product-info">
+            <div class="product-name">유아용 하이체어</div>
+            <div class="product-desc">아동 동반 손님용</div>
+          </div>
+          <a href="https://link.coupang.com/a/dS8Isp" target="_blank" rel="noopener noreferrer" class="product-link">상품 보기</a>
+        </li>
+      </ul>
+    </section>
+
+    <!-- 안전·소방 -->
+    <section class="shop-category">
+      <h2><span class="category-icon">🛡️</span> 안전·소방</h2>
+      <ul class="product-list">
+        <li class="product-item">
+          <div class="product-info">
+            <div class="product-name">화재감지기(거실/방마다 1개)</div>
+            <div class="product-desc">소방법령 준수</div>
+          </div>
+          <a href="https://link.coupang.com/a/dS7QAU" target="_blank" rel="noopener noreferrer" class="product-link">상품 보기</a>
+        </li>
+        <li class="product-item">
+          <div class="product-info">
+            <div class="product-name">가스감지기(거실/방마다 1개/ 보일러실 1개)</div>
+            <div class="product-desc">가스 누출 감지</div>
+          </div>
+          <a href="https://link.coupang.com/a/dS8spt" target="_blank" rel="noopener noreferrer" class="product-link">상품 보기</a>
+        </li>
+        <li class="product-item">
+          <div class="product-info">
+            <div class="product-name">비상손전등(거실/방마다 1개)</div>
+            <div class="product-desc">정전·비상 시 조명</div>
+          </div>
+          <a href="https://link.coupang.com/a/dS7Uxi" target="_blank" rel="noopener noreferrer" class="product-link">상품 보기</a>
+        </li>
+        <li class="product-item">
+          <div class="product-info">
+            <div class="product-name">소화기(집전체 1개 현관비치)</div>
+            <div class="product-desc">소방법령 준수</div>
+          </div>
+          <a href="https://link.coupang.com/a/dS7VAR" target="_blank" rel="noopener noreferrer" class="product-link">상품 보기</a>
+        </li>
+        <li class="product-item">
+          <div class="product-info">
+            <div class="product-name">비상구 유도표지판(현관문 위)</div>
+            <div class="product-desc">비상 시 대피 유도</div>
+          </div>
+          <a href="https://link.coupang.com/a/dS7Wfj" target="_blank" rel="noopener noreferrer" class="product-link">상품 보기</a>
+        </li>
+        <li class="product-item">
+          <div class="product-info">
+            <div class="product-name">완강기(3층이상 필수)</div>
+            <div class="product-desc">소방법령·비상 대피</div>
+          </div>
+          <a href="https://link.coupang.com/a/dS8Xfl" target="_blank" rel="noopener noreferrer" class="product-link">상품 보기</a>
+        </li>
+      </ul>
+    </section>
+
+    <!-- 기타 소모품·비품 -->
+    <section class="shop-category">
+      <h2><span class="category-icon">📦</span> 기타 소모품·비품</h2>
+      <ul class="product-list">
+        <li class="product-item">
+          <div class="product-info">
+            <div class="product-name">디퓨저</div>
+            <div class="product-desc">객실·공용 공간 향</div>
+          </div>
+          <a href="https://link.coupang.com/a/dS8TgG" target="_blank" rel="noopener noreferrer" class="product-link">상품 보기</a>
+        </li>
+        <li class="product-item">
+          <div class="product-info">
+            <div class="product-name">스타벅스 원두커피</div>
+            <div class="product-desc">손님 서비스용</div>
+          </div>
+          <a href="https://link.coupang.com/a/dS8NYA" target="_blank" rel="noopener noreferrer" class="product-link">상품 보기</a>
+        </li>
+        <li class="product-item">
+          <div class="product-info">
+            <div class="product-name">물걸레 청소포</div>
+            <div class="product-desc">바닥 청소 소모품</div>
+          </div>
+          <a href="https://link.coupang.com/a/dS8Rs9" target="_blank" rel="noopener noreferrer" class="product-link">상품 보기</a>
+        </li>
+      </ul>
+    </section>
+
+    <div class="partners-disclosure" style="margin-top: 8px;">
+      <strong>알림:</strong> 이 페이지의 일부 링크는 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.
+    </div>
+
+    <p style="text-align: center; margin-top: 24px;">
+      <a href="index.html" class="back-btn">← 메인으로 돌아가기</a>
+    </p>
+  </div>
+</body>
+</html>
