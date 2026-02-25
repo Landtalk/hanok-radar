@@ -2,6 +2,14 @@
 .topbar{height:56px;padding:0 16px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #eee}
 .brand{font-weight:700;display:flex;align-items:center;gap:8px}
 .brand-icon{font-size:1.5em}
+.topbar-nav{display:flex;align-items:center;gap:16px}
+.topbar-link{color:#495057;text-decoration:none;font-weight:500;font-size:0.95em;transition:color 0.2s}
+.topbar-link:hover{color:#007bff}
+.shop-card{border-left:4px solid #fd7e14}
+.shop-btn{background:#fd7e14;color:#fff}
+.shop-btn:hover{box-shadow:0 4px 12px rgba(253,126,20,0.3)}
+.sidebar .shop-btn{background:#fd7e14;color:#fff}
+.sidebar .shop-btn:hover{box-shadow:0 4px 12px rgba(253,126,20,0.3)}
 #authedNav{display:flex;gap:12px;align-items:center}
 .hide{display:none}
 .center{min-height:calc(100vh - 56px);display:flex;align-items:center;justify-content:center;background:#fafbfd}
@@ -134,6 +142,9 @@
 
 /* 모바일 반응형 */
 @media (max-width: 768px) {
+  .topbar{flex-wrap:wrap;gap:8px;padding:10px 12px}
+  .topbar-nav{gap:10px}
+  .topbar-link{font-size:0.9em}
   .wrap{grid-template-columns:1fr;gap:20px;padding:12px}
   .map-header{flex-direction:column;gap:15px;align-items:stretch;text-align:center}
   .map-title{font-size:1.8em}
