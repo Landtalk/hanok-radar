@@ -4,32 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>한옥 레이다 - 서울시 한옥 현황 지도 서비스</title>
-    <meta name="description" content="서울시 25개 자치구의 한옥 현황과 체험업 정보를 한눈에 볼 수 있는 전문 지도 서비스. 실시간 데이터로 한옥 정보를 쉽게 확인하세요.">
-    <meta name="keywords" content="한옥, 서울시, 한옥현황, 한옥체험업, 한옥지도, 서울한옥, 전통건축, 한옥정보">
+    <meta name="description" content="서울시 25개 자치구의 한옥 현황과 한옥체험업 정보를 지도에서 한눈에 확인할 수 있는 한옥 정보 서비스입니다.">
+    <meta name="keywords" content="한옥, 서울시, 한옥현황, 한옥체험업, 한옥지도, 서울한옥, 전통건축, 한옥정보, 한옥레이다">
     <meta name="author" content="한옥 레이다">
-    <meta name="google-site-verification" content="YOUR_GOOGLE_VERIFICATION_CODE">
+    <meta name="robots" content="index, follow">
+
     <meta property="og:title" content="한옥 레이다 - 서울시 한옥 현황 지도 서비스">
-    <meta property="og:description" content="서울시 25개 자치구의 한옥 현황과 체험업 정보를 한눈에 볼 수 있는 전문 지도 서비스">
+    <meta property="og:description" content="서울시 25개 자치구의 한옥 현황과 한옥체험업 정보를 지도에서 한눈에 확인하세요.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://hanok-radar.com">
-    <meta property="og:image" content="https://hanok-radar.com/favicon.png">
+    <meta property="og:url" content="https://hanok-radar.onrender.com/landing.html">
+    <meta property="og:image" content="https://hanok-radar.onrender.com/favicon.ico.png">
+
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="한옥 레이다 - 서울시 한옥 현황 지도 서비스">
-    <meta name="twitter:description" content="서울시 25개 자치구의 한옥 현황과 체험업 정보를 한눈에 볼 수 있는 전문 지도 서비스">
-    <meta name="twitter:image" content="https://hanok-radar.com/favicon.png">
-    <link rel="icon" type="image/png" href="favicon.png">
-    <link rel="apple-touch-icon" href="favicon.png">
+    <meta name="twitter:description" content="서울시 25개 자치구의 한옥 현황과 한옥체험업 정보를 지도에서 한눈에 확인하세요.">
+    <meta name="twitter:image" content="https://hanok-radar.onrender.com/favicon.ico.png">
+
+    <link rel="icon" type="image/png" href="favicon.ico.png">
+    <link rel="apple-touch-icon" href="favicon.ico.png">
     <link rel="stylesheet" href="styles.css">
-    <script defer src="auth-system.js"></script>
-    
-    <!-- 구조화된 데이터 (JSON-LD) -->
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9586684866056186" crossorigin="anonymous"></script>
+
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
         "@type": "WebApplication",
         "name": "한옥 레이다",
-        "description": "서울시 25개 자치구의 한옥 현황과 체험업 정보를 한눈에 볼 수 있는 전문 지도 서비스",
-        "url": "https://hanok-radar.com",
+        "description": "서울시 25개 자치구의 한옥 현황과 한옥체험업 정보를 지도에서 한눈에 확인할 수 있는 한옥 정보 서비스",
+        "url": "https://hanok-radar.onrender.com/landing.html",
         "applicationCategory": "MapApplication",
         "operatingSystem": "Web Browser",
         "offers": {
@@ -44,498 +47,105 @@
         "keywords": "한옥, 서울시, 한옥현황, 한옥체험업, 한옥지도, 서울한옥, 전통건축, 한옥정보"
     }
     </script>
+
     <style>
+        * { box-sizing: border-box; }
+        body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: #243447; }
         .landing-container {
             min-height: 100vh;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 20px;
+            padding: 28px 16px;
         }
-        
         .landing-card {
-            background: white;
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            max-width: 500px;
+            background: #fff;
+            border-radius: 22px;
+            padding: 38px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+            max-width: 680px;
             width: 100%;
-            text-align: center;
         }
-        
-        .landing-logo {
-            font-size: 2.5em;
-            font-weight: bold;
-            color: #2c3e50;
-            margin-bottom: 10px;
-        }
-        
-        .landing-subtitle {
-            color: #7f8c8d;
-            margin-bottom: 30px;
-            font-size: 1.1em;
-        }
-        
-        .landing-description {
-            color: #34495e;
-            line-height: 1.6;
-            margin-bottom: 30px;
-            text-align: left;
-        }
-        
-        .landing-features {
-            text-align: left;
-            margin-bottom: 30px;
-        }
-        
-        .landing-features h3 {
-            color: #2c3e50;
-            margin-bottom: 15px;
-        }
-        
-        .landing-features ul {
-            list-style: none;
-            padding: 0;
-        }
-        
-        .landing-features li {
-            padding: 8px 0;
-            color: #34495e;
-            position: relative;
-            padding-left: 25px;
-        }
-        
-        .landing-features li:before {
-            content: "✓";
-            color: #27ae60;
-            font-weight: bold;
-            position: absolute;
-            left: 0;
-        }
-        
-        .email-form {
-            margin-bottom: 20px;
-        }
-        
-        .email-input {
-            width: 100%;
-            padding: 15px;
-            border: 2px solid #e9ecef;
-            border-radius: 10px;
-            font-size: 1em;
-            margin-bottom: 15px;
-            transition: border-color 0.3s;
-        }
-        
-        .email-input:focus {
-            outline: none;
-            border-color: #667eea;
-        }
-        
-        .submit-btn {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            border-radius: 10px;
-            font-size: 1.1em;
-            font-weight: bold;
-            cursor: pointer;
-            width: 100%;
-            transition: transform 0.2s;
-        }
-        
-        .submit-btn:hover {
-            transform: translateY(-2px);
-        }
-        
-        .submit-btn:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-            transform: none;
-        }
-        
-        .status-message {
-            margin-top: 15px;
-            padding: 10px;
-            border-radius: 8px;
-            display: none;
-        }
-        
-        .status-success {
-            background: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
-        }
-        
-        .status-error {
-            background: #f8d7da;
-            color: #721c24;
-            border: 1px solid #f5c6cb;
-        }
-        
-        .google-form-link {
-            margin-top: 20px;
-            padding: 15px;
-            background: #f8f9fa;
-            border-radius: 10px;
-            border: 1px solid #e9ecef;
-        }
-        
-        .google-form-link a {
-            color: #667eea;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        
-        .google-form-link a:hover {
-            text-decoration: underline;
-        }
-        
-        .google-account-notice {
-            background: #e3f2fd;
-            border: 1px solid #bbdefb;
-            border-radius: 10px;
-            padding: 20px;
-            margin-bottom: 20px;
-            text-align: left;
-        }
-        
-        .google-account-notice h4 {
-            color: #1976d2;
-            margin-bottom: 10px;
-            font-size: 1.1em;
-        }
-        
-        .google-account-notice p {
-            color: #424242;
-            margin-bottom: 10px;
-            font-size: 0.95em;
-            line-height: 1.5;
-        }
-        
-        .google-account-notice a {
-            color: #1976d2;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        
-        .google-account-notice a:hover {
-            text-decoration: underline;
-        }
-        
-        .live-stats {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin: 20px 0;
-            padding: 20px;
-            background: #f8f9fa;
-            border-radius: 15px;
-        }
-        
-        .stat-item {
-            text-align: center;
-        }
-        
-        .stat-number {
+        .landing-logo { font-size: 2.4rem; font-weight: 800; color: #2c3e50; margin-bottom: 8px; text-align: center; }
+        .landing-subtitle { color: #7f8c8d; margin-bottom: 28px; font-size: 1.1rem; text-align: center; }
+        .landing-description { color: #34495e; line-height: 1.75; margin-bottom: 26px; }
+        .section-box { background: #f8f9fb; border: 1px solid #edf0f3; border-radius: 16px; padding: 20px; margin: 20px 0; }
+        h2, h3 { color: #2c3e50; margin-top: 0; }
+        .landing-features ul { list-style: none; padding: 0; margin: 0; }
+        .landing-features li { padding: 8px 0 8px 26px; color: #34495e; position: relative; line-height: 1.55; }
+        .landing-features li::before { content: "✓"; color: #27ae60; font-weight: 800; position: absolute; left: 0; }
+        .cta-area { margin: 28px 0 18px; display: grid; gap: 12px; }
+        .primary-btn, .secondary-btn {
             display: block;
-            font-size: 2em;
-            font-weight: bold;
-            color: #667eea;
-            margin-bottom: 5px;
-        }
-        
-        .stat-label {
-            font-size: 0.9em;
-            color: #6c757d;
-        }
-        
-        .user-reviews {
-            margin: 30px 0;
-            padding: 20px;
-            background: #f8f9fa;
-            border-radius: 15px;
-        }
-        
-        .user-reviews h4 {
-            color: #2c3e50;
-            margin-bottom: 15px;
             text-align: center;
+            text-decoration: none;
+            border-radius: 12px;
+            padding: 16px 24px;
+            font-size: 1.08rem;
+            font-weight: 800;
+            transition: transform 0.2s, opacity 0.2s;
         }
-        
-        .review-slider {
-            display: flex;
-            gap: 20px;
-            overflow-x: auto;
-            padding: 10px 0;
-        }
-        
-        .review-item {
-            min-width: 200px;
-            background: white;
-            padding: 15px;
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
-        
-        .review-item p {
-            margin: 0 0 10px 0;
-            color: #34495e;
-            font-style: italic;
-        }
-        
-        .reviewer {
-            color: #7f8c8d;
-            font-size: 0.9em;
-        }
-        
-        .form-description {
-            color: #6c757d;
-            margin-bottom: 15px;
-            text-align: center;
-            font-size: 0.95em;
-        }
-        
-        .trust-indicators {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin: 20px 0;
-            padding: 15px;
-        }
-        
-        .trust-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 5px;
-        }
-        
-        .trust-icon {
-            font-size: 1.5em;
-        }
-        
-        .trust-text {
-            font-size: 0.9em;
-            color: #6c757d;
-        }
-        
-        .footer-info {
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px solid #e9ecef;
-            color: #7f8c8d;
-            font-size: 0.9em;
+        .primary-btn { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; }
+        .secondary-btn { background: #eef2ff; color: #4f5fc4; }
+        .primary-btn:hover, .secondary-btn:hover { transform: translateY(-2px); opacity: 0.95; }
+        .notice-box { background: #e3f2fd; border: 1px solid #bbdefb; border-radius: 14px; padding: 18px; margin: 20px 0; color: #424242; line-height: 1.6; }
+        .notice-box strong { color: #1976d2; }
+        .footer-info { margin-top: 26px; padding-top: 20px; border-top: 1px solid #e9ecef; color: #7f8c8d; font-size: 0.94rem; line-height: 1.6; text-align: center; }
+        .footer-info a { color: #667eea; text-decoration: none; font-weight: 700; }
+        @media (max-width: 560px) {
+            .landing-card { padding: 28px 22px; }
+            .landing-logo { font-size: 2rem; }
         }
     </style>
 </head>
 <body>
-    <div class="landing-container">
-        <div class="landing-card">
+    <main class="landing-container">
+        <section class="landing-card">
             <div class="landing-logo">🏛️ 한옥 레이다</div>
             <div class="landing-subtitle">서울시 한옥 현황 지도 서비스</div>
-            
-            <!-- 실시간 사용자 수 표시 -->
-            <div class="live-stats">
-                <div class="stat-item">
-                    <span class="stat-number" id="currentUsers">47</span>
-                    <span class="stat-label">현재 사용 중</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number" id="todayVisitors">128</span>
-                    <span class="stat-label">오늘 방문</span>
-                </div>
-            </div>
-            
+
             <div class="landing-description">
-                <strong>한옥 레이다</strong>는 서울시 25개 자치구의 한옥 현황과 체험업 정보를 
-                한눈에 볼 수 있는 전문 지도 서비스입니다.
+                <strong>한옥 레이다</strong>는 서울시 25개 자치구의 한옥 현황과 한옥체험업 정보를
+                지도에서 한눈에 확인할 수 있도록 만든 정보 서비스입니다. 한옥체험업 창업을 준비하거나,
+                지역별 한옥 분포와 담당 부서 정보를 확인하려는 분들이 참고할 수 있도록 지도, 통계,
+                연락처, 관련 정보를 함께 제공합니다.
             </div>
-            
-            <div class="landing-features">
+
+            <div class="section-box landing-features">
                 <h3>주요 기능</h3>
                 <ul>
-                    <li>서울시 25개 자치구 한옥 현황 통계</li>
-                    <li>한옥 체험업 가능 물건 정보</li>
-                    <li>구별 상세 통계 및 분석</li>
-                    <li>한옥 관련 서비스 업체 정보</li>
-                    <li>실시간 데이터 업데이트</li>
+                    <li>서울시 25개 자치구 한옥 현황 지도 확인</li>
+                    <li>한옥등록현황과 한옥체험업 등록현황 레이어 확인</li>
+                    <li>구별 통계와 한옥 관련 담당 부서 연락처 확인</li>
+                    <li>한옥체험업·외도민박 준비에 필요한 서비스와 물품 정보 연결</li>
                 </ul>
             </div>
-            
-            <div class="google-account-notice">
-                <h4>📌 구글 계정 안내</h4>
-                <p>지도 서비스 이용 시 구글 계정 로그인이 필요할 수 있습니다.</p>
-                <p>구글 계정이 없으신 경우 <a href="https://accounts.google.com/signup" target="_blank">구글 계정 만들기</a>를 통해 무료로 생성하실 수 있습니다.</p>
+
+            <div class="notice-box">
+                <strong>이용 안내</strong><br>
+                한옥 레이다는 회원가입 없이 바로 이용할 수 있습니다. 다만 지도가 Google My Maps 기반으로 제공되므로,
+                사용 환경에 따라 Google 계정 로그인이 필요하거나 지도가 새 탭에서 열릴 수 있습니다.
             </div>
-            
-            <!-- 사용자 후기 섹션 -->
-            <div class="user-reviews">
-                <h4>💬 사용자 후기</h4>
-                <div class="review-slider">
-                    <div class="review-item">
-                        <p>"한옥 정보를 한눈에 볼 수 있어서 정말 유용해요!"</p>
-                        <span class="reviewer">- 김○○님</span>
-                    </div>
-                    <div class="review-item">
-                        <p>"체험업 정보가 상세해서 도움이 많이 됩니다."</p>
-                        <span class="reviewer">- 이○○님</span>
-                    </div>
-                    <div class="review-item">
-                        <p>"구별 통계가 정확해서 분석하기 좋아요."</p>
-                        <span class="reviewer">- 박○○님</span>
-                    </div>
-                </div>
+
+            <div class="section-box">
+                <h3>데이터 안내</h3>
+                <p style="margin-bottom:0; line-height:1.7;">
+                    본 서비스는 공개 자료와 운영자가 정리한 한옥 관련 정보를 바탕으로 제공됩니다.
+                    실제 인허가, 창업, 매매, 임대 판단 전에는 반드시 관할 구청 및 관련 기관에 최신 정보를 확인하시기 바랍니다.
+                </p>
             </div>
-            
-            <div class="email-form">
-                <h4>🚀 지금 바로 시작하기</h4>
-                <p class="form-description">이메일만 입력하면 즉시 사용 가능합니다!</p>
-                <input type="email" id="emailInput" class="email-input" 
-                       placeholder="이메일 주소를 입력해주세요" required>
-                <button id="submitBtn" class="submit-btn" onclick="loginWithEmail()">
-                    무료로 시작하기
-                </button>
-                <div id="statusMessage" class="status-message"></div>
+
+            <div class="cta-area">
+                <a href="index.html" class="primary-btn">한옥 지도 바로 보기</a>
+                <a href="guide.html" class="secondary-btn">이용 가이드 보기</a>
             </div>
-            
-            <div class="trust-indicators">
-                <div class="trust-item">
-                    <span class="trust-icon">🔒</span>
-                    <span class="trust-text">안전한 서비스</span>
-                </div>
-                <div class="trust-item">
-                    <span class="trust-icon">⚡</span>
-                    <span class="trust-text">즉시 사용 가능</span>
-                </div>
-                <div class="trust-item">
-                    <span class="trust-icon">📊</span>
-                    <span class="trust-text">실시간 데이터</span>
-                </div>
-            </div>
-            
+
             <div class="footer-info">
-                <p>이메일만 입력하면 즉시 서비스 이용이 가능합니다.</p>
-                <p>문의: landtalk2025@gmail.com</p>
+                <p>문의: <a href="mailto:landtalk2025@gmail.com">landtalk2025@gmail.com</a></p>
+                <p>© 2025 Hanok Radar. All rights reserved.</p>
             </div>
-        </div>
-    </div>
-
-    <script>
-        // 이메일 유효성 검사
-        function validateEmail(email) {
-            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            return re.test(email);
-        }
-        
-        // 상태 메시지 표시
-        function showStatus(message, isError = false) {
-            const statusDiv = document.getElementById('statusMessage');
-            statusDiv.textContent = message;
-            statusDiv.className = `status-message ${isError ? 'status-error' : 'status-success'}`;
-            statusDiv.style.display = 'block';
-        }
-        
-
-               // 소셜 증명용 통계 (GA4가 실제 데이터 수집)
-               function updateLiveStats() {
-                   const currentUsers = document.getElementById('currentUsers');
-                   const todayVisitors = document.getElementById('todayVisitors');
-                   
-                   // 소셜 증명용 고정값 (GA4에서 실제 데이터 확인)
-                   const baseUsers = 35 + Math.floor(Math.random() * 15); // 35-50명 사이
-                   const baseVisitors = 100 + Math.floor(Math.random() * 50); // 100-150명
-                   
-                   currentUsers.textContent = baseUsers.toLocaleString();
-                   todayVisitors.textContent = baseVisitors.toLocaleString();
-               }
-        
-        // 사용자 후기 슬라이더
-        function startReviewSlider() {
-            const slider = document.querySelector('.review-slider');
-            if (!slider) return;
-            
-            let currentIndex = 0;
-            const reviews = slider.querySelectorAll('.review-item');
-            
-            setInterval(() => {
-                reviews[currentIndex].style.opacity = '0.5';
-                currentIndex = (currentIndex + 1) % reviews.length;
-                reviews[currentIndex].style.opacity = '1';
-            }, 3000);
-        }
-        
-        // 이메일 로그인 처리 (가짜 인증)
-        function loginWithEmail() {
-            const email = document.getElementById('emailInput').value.trim();
-            const submitBtn = document.getElementById('submitBtn');
-            
-            if (!email) {
-                showStatus('이메일 주소를 입력해주세요.', true);
-                return;
-            }
-            
-            if (!validateEmail(email)) {
-                showStatus('올바른 이메일 주소를 입력해주세요.', true);
-                return;
-            }
-            
-            // 버튼 비활성화
-            submitBtn.disabled = true;
-            submitBtn.textContent = '접속 중...';
-            
-                   // 간단한 인증 과정 (GA4가 모든 데이터 수집)
-                   setTimeout(() => {
-                       try {
-                           // 이메일을 세션스토리지에 저장 (인증용)
-                           sessionStorage.setItem('hanok_radar_email', email);
-                           
-                           showStatus('✅ 접속 성공! 메인페이지로 이동합니다.');
-                           setTimeout(() => {
-                               window.location.href = 'index.html';
-                           }, 1500);
-                       } catch (error) {
-                           console.error('접속 오류:', error);
-                           showStatus('❌ 접속 중 오류가 발생했습니다.', true);
-                       } finally {
-                           submitBtn.disabled = false;
-                           submitBtn.textContent = '무료로 시작하기';
-                       }
-                   }, 1000); // 1초 대기 (인증하는 것처럼 보이게)
-        }
-        
-               // 사용자 수 증가 함수 (백업용)
-               function incrementUserCount() {
-                   const today = new Date().toDateString();
-                   const todayData = JSON.parse(localStorage.getItem('hanok_radar_today') || '{"date":"","visitors":0}');
-                   
-                   if (todayData.date !== today) {
-                       todayData.date = today;
-                       todayData.visitors = 0;
-                   }
-                   
-                   todayData.visitors += 1;
-                   localStorage.setItem('hanok_radar_today', JSON.stringify(todayData));
-                   updateLiveStats();
-               }
-        
-        // 페이지 로드 시 초기화
-        document.addEventListener('DOMContentLoaded', function() {
-            updateLiveStats();
-            startReviewSlider();
-            
-            // 30초마다 통계 업데이트
-            setInterval(updateLiveStats, 30000);
-        });
-        
-        // 엔터키로 제출
-        document.getElementById('emailInput').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                loginWithEmail();
-            }
-        });
-    </script>
+        </section>
+    </main>
 </body>
 </html>
