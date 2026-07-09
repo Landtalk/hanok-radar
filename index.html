@@ -316,6 +316,85 @@ crossorigin="anonymous"></script>
       }
     }
   </script>
+  <style>
+    .overview-section,
+    .faq-section,
+    .data-source-section {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 24px;
+      margin: 24px 0;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+      line-height: 1.7;
+      color: #34495e;
+    }
+
+    .overview-section h2,
+    .faq-section h2,
+    .data-source-section h2 {
+      margin: 0 0 16px 0;
+      color: #2c3e50;
+      font-size: 1.4rem;
+    }
+
+    .overview-section h3 {
+      margin-top: 20px;
+      color: #2c3e50;
+      font-size: 1.1rem;
+    }
+
+    .overview-section ul {
+      margin: 12px 0 0 0;
+      padding-left: 20px;
+    }
+
+    .overview-section li {
+      margin: 6px 0;
+    }
+
+    .faq-item {
+      border-top: 1px solid #e9ecef;
+      padding: 16px 0;
+    }
+
+    .faq-item:first-of-type {
+      border-top: 0;
+      padding-top: 0;
+    }
+
+    .faq-item h3 {
+      margin: 0 0 8px 0;
+      color: #2c3e50;
+      font-size: 1rem;
+    }
+
+    .faq-item p,
+    .data-source-section p,
+    .overview-section p {
+      margin: 8px 0;
+    }
+
+    .data-source-section .source-note {
+      font-size: 0.92rem;
+      color: #6c757d;
+    }
+
+    .main-content {
+      min-width: 0;
+    }
+
+    @media (min-width: 901px) {
+      .main-content {
+        grid-column: 1;
+      }
+
+      .sidebar {
+        grid-column: 2;
+      }
+    }
+
+  </style>
+
 </head>
 <body>
   <header class="topbar">
@@ -334,6 +413,7 @@ crossorigin="anonymous"></script>
   <!-- 지도 -->
   <main id="mapScreen">
     <section class="wrap">
+      <div class="main-content">
       <!-- 지도 헤더 -->
       <div class="map-header">
         <h2 class="map-title">한옥 현황 지도</h2>
@@ -365,7 +445,76 @@ crossorigin="anonymous"></script>
              (<a id="openNewTab" target="_blank" rel="no-referrer">새 탭으로 열기</a>)
            </p>
            
-      
+          
+      <section class="overview-section">
+        <h2>한옥 레이다란?</h2>
+        <p>
+          한옥 레이다는 서울시 25개 자치구의 한옥 현황과 한옥체험업 정보를
+          지도에서 한눈에 확인할 수 있도록 만든 무료 정보 서비스입니다.
+        </p>
+        <p>
+          한옥체험업 창업을 준비하거나, 지역별 한옥 분포와 담당 부서 정보를 확인하려는 분들을 위해
+          지도, 통계, 연락처, 관련 정보를 함께 제공합니다.
+        </p>
+
+        <h3>주요 제공 정보</h3>
+        <ul>
+          <li>서울시 등록 한옥 현황 지도</li>
+          <li>한옥체험업 등록 현황 지도</li>
+          <li>서울시 25개 자치구별 한옥 관련 통계</li>
+          <li>한옥 담당 부서 연락처</li>
+          <li>숙박업·한옥체험업 준비에 필요한 참고 정보</li>
+        </ul>
+      </section>
+
+      <section class="faq-section">
+        <h2>자주 묻는 질문</h2>
+
+        <div class="faq-item">
+          <h3>등록한옥이란 무엇인가요?</h3>
+          <p>
+            등록한옥은 지자체의 한옥 관련 제도에 따라 등록·관리되는 한옥을 의미합니다.
+            등록 여부와 세부 기준은 관할 지자체의 정책과 조례에 따라 달라질 수 있습니다.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h3>한옥체험업이란 무엇인가요?</h3>
+          <p>
+            한옥체험업은 한옥의 특성을 활용해 숙박, 문화체험 등 관광 목적의 서비스를 제공하는 업종입니다.
+            실제 영업 가능 여부는 건축물 용도, 입지, 인허가 요건 등을 함께 확인해야 합니다.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h3>지도 정보는 어떻게 활용하면 되나요?</h3>
+          <p>
+            지도에서 지역별 한옥 분포와 한옥체험업 등록 현황을 먼저 확인한 뒤,
+            관심 지역의 담당 부서에 세부 가능 여부를 문의하는 용도로 활용하는 것이 좋습니다.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h3>정보 오류는 어떻게 제보하나요?</h3>
+          <p>
+            지도나 연락처 정보에 오류가 있다면 하단 이메일 또는 카카오톡 오픈채팅방으로 제보해 주세요.
+            확인 후 가능한 범위에서 수정하겠습니다.
+          </p>
+        </div>
+      </section>
+
+      <section class="data-source-section">
+        <h2>데이터 출처 및 업데이트 안내</h2>
+        <p>
+          한옥 레이다는 공개된 행정자료와 지도 데이터를 바탕으로 한옥 현황과 한옥체험업 관련 정보를
+          보기 쉽게 정리한 서비스입니다.
+        </p>
+        <p class="source-note">
+          제공 정보는 참고용이며, 실제 창업·인허가·매입·임대 판단 전에는 반드시 관할 지자체와 관련 기관에
+          최신 정보를 확인하시기 바랍니다.
+        </p>
+      </section>
+
       <!-- 사용법 가이드 (접힌 상태로 시작) -->
       <div class="guide-section">
         <div class="guide-content" id="guideContent" style="display: none;">
@@ -424,6 +573,8 @@ crossorigin="anonymous"></script>
             <a href="guide.html" class="guide-link-btn">상세 가이드 보기</a>
           </div>
         </div>
+      </div>
+
       </div>
 
       <!-- 사이드바: 공지사항 및 액션 카드들 -->
